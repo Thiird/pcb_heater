@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name "IRM-30-5")(type "KiCad")(uri "${KIPRJMOD}/footprints/IRM-30-5.pretty")(options "")(descr ""))
+)

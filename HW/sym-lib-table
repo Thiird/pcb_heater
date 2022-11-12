@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name "IRM-30-5")(type "KiCad")(uri "${KIPRJMOD}/symbols/IRM-30-5.kicad_sym")(options "")(descr ""))
+  (lib (name "MPM-45-5")(type "KiCad")(uri "${KIPRJMOD}/symbols/MPM-45-5.kicad_sym")(options "")(descr ""))
+)
