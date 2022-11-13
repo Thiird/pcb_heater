@@ -349,7 +349,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "pcb_heater.kicad_pro",
+    "filename": "pcb_heater_driver.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -381,7 +381,7 @@
     "last_paths": {
       "gencad": "",
       "idf": "",
-      "netlist": "",
+      "netlist": "../../../../../Program Files/KiCad/6.0/",
       "specctra_dsn": "",
       "step": "",
       "vrml": ""
