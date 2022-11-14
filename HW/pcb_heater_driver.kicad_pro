@@ -430,6 +430,18 @@
     [
       "e63e39d7-6ac0-4ffd-8aa3-1841a4541b55",
       ""
+    ],
+    [
+      "7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8",
+      "MCU"
+    ],
+    [
+      "d8f51e65-ca8c-412e-9c09-61e73d04032d",
+      "Power"
+    ],
+    [
+      "b389637b-c3c6-4117-a6e9-91a2ebc82014",
+      "Heater"
     ]
   ],
   "text_variables": {}
