@@ -1,3 +1,7 @@
 (sym_lib_table
   (lib (name "Espressif")(type "KiCad")(uri "${KIPRJMOD}/symbols/Espressif.kicad_sym")(options "")(descr ""))
+  (lib (name "LD90-23B24R2")(type "KiCad")(uri "${KIPRJMOD}/symbols/LD90-23B24R2.kicad_sym")(options "")(descr ""))
+  (lib (name "SMBJ20A")(type "KiCad")(uri "${KIPRJMOD}/symbols/SMBJ20A.kicad_sym")(options "")(descr ""))
+  (lib (name "TS30042")(type "KiCad")(uri "${KIPRJMOD}/symbols/TS30042.kicad_sym")(options "")(descr ""))
+  (lib (name "MCP4716")(type "KiCad")(uri "${KIPRJMOD}/symbols/MCP4716.kicad_sym")(options "")(descr ""))
 )

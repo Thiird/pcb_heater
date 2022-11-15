@@ -10,115 +10,8 @@
   )
 
   (lib_symbols
-    (symbol "Mechanical:MountingHole_Pad" (pin_numbers hide) (pin_names (offset 1.016) hide) (in_bom yes) (on_board yes)
-      (property "Reference" "H" (id 0) (at 0 6.35 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Value" "MountingHole_Pad" (id 1) (at 0 4.445 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Footprint" "" (id 2) (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Datasheet" "~" (id 3) (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_keywords" "mounting hole" (id 4) (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_description" "Mounting Hole with connection" (id 5) (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_fp_filters" "MountingHole*Pad*" (id 6) (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "MountingHole_Pad_0_1"
-        (circle (center 0 1.27) (radius 1.27)
-          (stroke (width 1.27) (type default) (color 0 0 0 0))
-          (fill (type none))
-        )
-      )
-      (symbol "MountingHole_Pad_1_1"
-        (pin input line (at 0 -2.54 90) (length 2.54)
-          (name "1" (effects (font (size 1.27 1.27))))
-          (number "1" (effects (font (size 1.27 1.27))))
-        )
-      )
-    )
   )
 
-
-  (symbol (lib_id "Mechanical:MountingHole_Pad") (at 98.425 127 0) (unit 1)
-    (in_bom yes) (on_board yes) (fields_autoplaced)
-    (uuid 0c3e1789-22f1-49dc-9207-61130b8786da)
-    (property "Reference" "H?" (id 0) (at 100.965 124.8953 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "MH3" (id 1) (at 100.965 127.4322 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_TopBottom" (id 2) (at 98.425 127 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (id 3) (at 98.425 127 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid b45b874e-0e13-430a-9962-feef78393e5d))
-  )
-
-  (symbol (lib_id "Mechanical:MountingHole_Pad") (at 109.22 127 0) (unit 1)
-    (in_bom yes) (on_board yes) (fields_autoplaced)
-    (uuid 14689039-f5be-4d66-b7ed-d64b0c3b2276)
-    (property "Reference" "H?" (id 0) (at 111.76 124.8953 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "MH4" (id 1) (at 111.76 127.4322 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_TopBottom" (id 2) (at 109.22 127 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (id 3) (at 109.22 127 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 9c2cbc14-abfe-471e-8071-6643be83426e))
-  )
-
-  (symbol (lib_id "Mechanical:MountingHole_Pad") (at 98.425 119.38 0) (unit 1)
-    (in_bom yes) (on_board yes) (fields_autoplaced)
-    (uuid 222c348c-e8dc-4952-966c-7cae55a7838a)
-    (property "Reference" "H?" (id 0) (at 100.965 117.2753 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "MH2" (id 1) (at 100.965 119.8122 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_TopBottom" (id 2) (at 98.425 119.38 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (id 3) (at 98.425 119.38 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid e9d2ab6f-69d6-4238-99f6-33cd0980fed0))
-  )
-
-  (symbol (lib_id "Mechanical:MountingHole_Pad") (at 109.22 119.38 0) (unit 1)
-    (in_bom yes) (on_board yes) (fields_autoplaced)
-    (uuid f44543a5-6cc6-4ec6-b6ae-cb61b1c80590)
-    (property "Reference" "H?" (id 0) (at 111.76 117.2753 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "MH2" (id 1) (at 111.76 119.8122 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_TopBottom" (id 2) (at 109.22 119.38 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (id 3) (at 109.22 119.38 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 21257e30-ad9c-4366-b7b9-0ffcff8c07ef))
-  )
 
   (sheet (at 130.81 71.12) (size 35.56 24.13) (fields_autoplaced)
     (stroke (width 0.1524) (type solid) (color 0 0 0 0))
@@ -139,7 +32,7 @@
     (property "Sheet name" "Heater" (id 0) (at 130.81 110.1834 0)
       (effects (font (size 3 3)) (justify left bottom))
     )
-    (property "Sheet file" "heater.kicad_sch" (id 1) (at 130.81 133.9346 0)
+    (property "Sheet file" "peripherals.kicad_sch" (id 1) (at 130.81 133.9346 0)
       (effects (font (size 1.27 1.27)) (justify left top))
     )
   )
@@ -165,55 +58,229 @@
 
   (symbol_instances
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/48c1a2a4-d8b8-41a2-b8e6-b1f148af0b1a"
-      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
+      (reference "#PWR0101") (unit 1) (value "GND") (footprint "")
     )
-    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/a1d848ef-75e7-4d86-a412-5beae6549f11"
-      (reference "#PWR?") (unit 1) (value "+12V") (footprint "")
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/25d01be7-fc90-48ad-9d02-44fdf722a9b1"
+      (reference "#PWR0102") (unit 1) (value "+24V") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/e834e9b5-3b43-48ff-b03d-fefe8114787a"
+      (reference "#PWR0103") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/8ccb9300-adbf-4aca-a188-a7e88d7364c7"
+      (reference "#PWR0104") (unit 1) (value "+3.3V") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/2dc4a757-0255-455d-b0f1-16b41c706d38"
+      (reference "#PWR0105") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/48dd6622-bec6-4c92-876f-bf34d1c5d7ff"
+      (reference "#PWR0106") (unit 1) (value "+24V") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/ba275b6d-155e-4cf1-90d6-75d585d182ae"
+      (reference "#PWR0107") (unit 1) (value "GND") (footprint "")
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/aa81f694-bae5-4b53-bfb3-7bf7f2624868"
-      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
+      (reference "#PWR0108") (unit 1) (value "GND") (footprint "")
     )
-    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/adca6d77-0a90-46ef-8010-470c2029aa86"
-      (reference "#PWR?") (unit 1) (value "+12V") (footprint "")
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/4a51ee68-2d41-4f6a-9464-d71f4a49a81d"
+      (reference "#PWR0109") (unit 1) (value "GND") (footprint "")
     )
-    (path "/0c3e1789-22f1-49dc-9207-61130b8786da"
-      (reference "H?") (unit 1) (value "MH3") (footprint "MountingHole:MountingHole_3.2mm_M3_Pad_TopBottom")
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/26cad454-7fcd-470d-8b93-95fabf33ca3b"
+      (reference "#PWR0110") (unit 1) (value "+5V") (footprint "")
     )
-    (path "/14689039-f5be-4d66-b7ed-d64b0c3b2276"
-      (reference "H?") (unit 1) (value "MH4") (footprint "MountingHole:MountingHole_3.2mm_M3_Pad_TopBottom")
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/49ee0e50-b35c-47b0-ac88-e47bdd5e08e2"
+      (reference "#PWR0111") (unit 1) (value "GND") (footprint "")
     )
-    (path "/222c348c-e8dc-4952-966c-7cae55a7838a"
-      (reference "H?") (unit 1) (value "MH2") (footprint "MountingHole:MountingHole_3.2mm_M3_Pad_TopBottom")
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/1aee23f9-db67-4065-96fa-aa31564693d1"
+      (reference "#PWR0112") (unit 1) (value "GND") (footprint "")
     )
-    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/394e1ed0-8c89-42f5-b29c-c7a94e417c6e"
-      (reference "H?") (unit 1) (value "AC_NEUTRAL") (footprint "MountingHole:MountingHole_2.2mm_M2_Pad_TopBottom")
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/4482cc10-6886-400c-aebe-c32f2ecd90bf"
+      (reference "#PWR0113") (unit 1) (value "+3.3V") (footprint "")
     )
-    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/a331a32a-4642-4439-b38f-72de7ceef476"
-      (reference "H?") (unit 1) (value "AC_LIVE") (footprint "MountingHole:MountingHole_2.2mm_M2_Pad_TopBottom")
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/a3c3b829-914f-418f-a664-f7954ba4bbcd"
+      (reference "#PWR0114") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/f2ba6f7a-af2b-4928-a704-1439635b2990"
+      (reference "#PWR0115") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/c19f7268-0ed2-41bf-8055-3aac11da5046"
+      (reference "#PWR0116") (unit 1) (value "+3.3V") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/c3482e7a-7435-41e7-87bd-0354e12b46d1"
+      (reference "#PWR0117") (unit 1) (value "+3.3V") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/edb00ef0-c019-4d28-b76e-6b3b935045b2"
+      (reference "#PWR0118") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/dd0c8dd3-182d-4953-9b17-faede17310a8"
+      (reference "#PWR0119") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/47370d8d-a2d1-4bdb-8329-ce2b7ee205dd"
+      (reference "#PWR0120") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/c6608da5-728e-4fac-b524-3323f5a95030"
+      (reference "#PWR0121") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/143cec38-fae4-4cee-b948-a19c0f80bd6f"
+      (reference "#PWR0122") (unit 1) (value "+3.3V") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/04934342-2c84-4e55-bc41-f94ca7a6e912"
+      (reference "#PWR0123") (unit 1) (value "+3.3V") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/0303fcd9-bceb-466c-a1e6-f1606dd0067a"
+      (reference "#PWR0124") (unit 1) (value "+3.3V") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/81adfbe0-89d0-4d30-9ffe-8f790b3f52da"
+      (reference "#PWR0125") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/be59c7a8-b693-4b3e-9f1d-7787e4a7e23f"
+      (reference "#PWR0126") (unit 1) (value "+24V") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/045e2b02-bbb9-4128-b50f-816a961b17ef"
+      (reference "C1") (unit 1) (value "1uF") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/c457d6bc-d372-4e5a-9060-512765531115"
+      (reference "C2") (unit 1) (value "200uF") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/6847127a-ec49-43ab-8735-480708e84162"
+      (reference "C3") (unit 1) (value "10uF") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/23743d2c-88b3-449f-b4c2-508e5560f5c7"
+      (reference "C4") (unit 1) (value "22nF") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/88fde560-fe88-48e9-b702-5683ca6fe52e"
+      (reference "C5") (unit 1) (value "22u") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/de16c25a-44d5-45f4-87ce-8e569c0021be"
+      (reference "C6") (unit 1) (value "22u") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/b6a81e01-84c6-4aca-8d83-89fcce10fab1"
+      (reference "C7") (unit 1) (value "22uF") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/83f963a0-1c8f-49f6-9364-7926fc8bc1a3"
+      (reference "C8") (unit 1) (value "100n") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/f2b2cf09-7062-4d08-aef1-b6b828f8da77"
+      (reference "C9") (unit 1) (value "100n") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/f16c0138-10b2-4392-baa9-77aa4181a36e"
+      (reference "C10") (unit 1) (value "100n") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/bb017e25-98b5-4eb5-9c9d-213bd8d7cf25"
+      (reference "C11") (unit 1) (value "10u") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/9a8706a1-32af-43c5-ba93-1963056656c7"
+      (reference "C12") (unit 1) (value "100n") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/ed428914-8a6f-4d05-926f-61a47f6905fc"
+      (reference "D1") (unit 1) (value "SMBJ20A") (footprint "Diode_THT:D_DO-201AE_P15.24mm_Horizontal")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/746e1d5b-3925-4f4f-bd16-1a246028a63c"
+      (reference "D2") (unit 1) (value "RED") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/e1d886be-b6c1-4c10-a8cc-74e8bb26d10f"
+      (reference "D3") (unit 1) (value "PRTR5V0U2X") (footprint "Package_TO_SOT_SMD:SOT-143")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/c644c8a6-c3c5-4ff3-88ff-9cae94180919"
+      (reference "H1") (unit 1) (value "MH2") (footprint "MountingHole:MountingHole_3.2mm_M3_Pad_TopBottom")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/862eb0ba-da8c-48fc-82ce-6908710d185a"
+      (reference "H2") (unit 1) (value "MH3") (footprint "MountingHole:MountingHole_3.2mm_M3_Pad_TopBottom")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/794abc98-35f2-462d-928a-97b21b3e1156"
+      (reference "H3") (unit 1) (value "MH2") (footprint "MountingHole:MountingHole_3.2mm_M3_Pad_TopBottom")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/9fb67e02-6e84-460f-8962-65ee017cc772"
+      (reference "H4") (unit 1) (value "MH4") (footprint "MountingHole:MountingHole_3.2mm_M3_Pad_TopBottom")
     )
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/cd4368a7-e6c8-4258-bffc-05aea7343e86"
-      (reference "H?") (unit 1) (value "AC_fixture") (footprint "MountingHole:MountingHole_3.2mm_M3_Pad_TopBottom")
+      (reference "H5") (unit 1) (value "AC_cable_fixture") (footprint "MountingHole:MountingHole_3.2mm_M3_Pad_TopBottom")
     )
-    (path "/f44543a5-6cc6-4ec6-b6ae-cb61b1c80590"
-      (reference "H?") (unit 1) (value "MH2") (footprint "MountingHole:MountingHole_3.2mm_M3_Pad_TopBottom")
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/a331a32a-4642-4439-b38f-72de7ceef476"
+      (reference "H6") (unit 1) (value "AC_LIVE") (footprint "MountingHole:MountingHole_2.2mm_M2_Pad_TopBottom")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/394e1ed0-8c89-42f5-b29c-c7a94e417c6e"
+      (reference "H7") (unit 1) (value "AC_NEUTRAL") (footprint "MountingHole:MountingHole_2.2mm_M2_Pad_TopBottom")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/958034e3-103b-40f8-b887-f860a3740411"
+      (reference "J1") (unit 1) (value "USB_C_Receptacle_USB2.0") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/45f44cfb-ca59-477d-b2f8-140966bccc8d"
+      (reference "J2") (unit 1) (value "JTAG") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/93fd0e3c-f541-45ba-8956-0c590d47378f"
+      (reference "J3") (unit 1) (value "UART") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/dbf72bfa-520e-4065-b2a1-01f3bfc4970d"
+      (reference "L1") (unit 1) (value "4u7") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/79bd5411-7f31-4428-87dc-3453a7cb9ee2"
+      (reference "PS1") (unit 1) (value "LD90-23B24R2") (footprint "LD90-23B24R2")
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/963c3dda-7a6e-4712-911a-2a75ea794141"
-      (reference "Q?") (unit 1) (value "BUK9M156-100EX") (footprint "Package_TO_SOT_SMD:LFPAK33")
+      (reference "Q1") (unit 1) (value "BUK9M156-100EX") (footprint "Package_TO_SOT_SMD:LFPAK33")
     )
-    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/3856383c-aa34-4f38-a318-6ee903b2757b"
-      (reference "R?") (unit 1) (value "Heater - 1.5 Ohm") (footprint "")
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/6513e9fc-4e19-469b-8067-3b0709c18998"
+      (reference "R1") (unit 1) (value "BR_DNP") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/49d5e1fc-7906-44bc-b5b9-ac01ba36374d"
+      (reference "R2") (unit 1) (value "10k") (footprint "")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/ca0e95fc-fcf2-4116-9a47-91e2d5d4dffb"
+      (reference "R3") (unit 1) (value "3750") (footprint "")
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/f249d8fd-5313-4b44-83c0-446d4b926f12"
-      (reference "R?") (unit 1) (value "10k") (footprint "")
+      (reference "R4") (unit 1) (value "10k") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/3856383c-aa34-4f38-a318-6ee903b2757b"
+      (reference "R5") (unit 1) (value "Heater - 1.5 Ohm") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/d15ed7a2-0ecd-4f73-8d71-4f65193d9f50"
+      (reference "R6") (unit 1) (value "5k1") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/3fa4580a-8420-4f19-9c06-d53176042bb6"
+      (reference "R7") (unit 1) (value "5k1") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/1db51c83-93ce-4263-8a41-9e8e798adc16"
+      (reference "R8") (unit 1) (value "1k") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/7b8e5042-3d40-4a83-a09e-ed59ba8325ee"
+      (reference "R9") (unit 1) (value "R_Small") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/d3abaaef-7017-46a6-92a2-1351b7bcc059"
+      (reference "R10") (unit 1) (value "4k7") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/13bd1b9c-3b55-45a6-9774-57cc090f3977"
+      (reference "R11") (unit 1) (value "4k7") (footprint "")
     )
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/c4f3b1bb-f02d-4cc6-9141-d5127a605433"
-      (reference "SW?") (unit 1) (value "MAIN_SWITCH") (footprint "")
+      (reference "SW1") (unit 1) (value "MAIN_SWITCH") (footprint "")
     )
-    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/5a651a0f-a60f-44ea-b442-0d1976df6d77"
-      (reference "TH?") (unit 1) (value "Thermistor_NTC") (footprint "")
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/3f98aa75-d263-43ba-893d-3d91d04a8ac1"
+      (reference "SW2") (unit 1) (value "SW_DPST") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/fa1e2045-d30d-44af-9ace-789568c5a46a"
+      (reference "TH1") (unit 1) (value "Heater_1") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/b7d39dc1-6c13-45bf-a33a-facbfee4c8e3"
+      (reference "TH2") (unit 1) (value "Heater_2") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/541ecd2f-18ca-4336-a052-92b06923e0ab"
+      (reference "TH3") (unit 1) (value "Heater_3") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/af5efeca-5252-4d5b-8d62-6d6e6bb2bb53"
+      (reference "TH4") (unit 1) (value "mosfet") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/a1f869a2-93e5-410d-a763-fc76726fce5e"
+      (reference "TP1") (unit 1) (value "TestPoint") (footprint "")
     )
     (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/39757241-0951-4c4d-a6c3-1fb3ba34292c"
-      (reference "U?") (unit 1) (value "ESP32-S2-MINI-2") (footprint "Espressif:ESP32-S2-MINI-1")
+      (reference "U1") (unit 1) (value "ESP32-S2-MINI-2") (footprint "Espressif:ESP32-S2-MINI-1")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/e173a879-13c2-4192-a1a6-cee304a3cf47"
+      (reference "U2") (unit 1) (value "TS30042-M000QFNR") (footprint "")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/e01f27eb-eaee-4868-bd7e-a536f648761a"
+      (reference "U3") (unit 1) (value "MCP4716A0T-E") (footprint "")
     )
   )
 )
