@@ -442,6 +442,10 @@
     [
       "b389637b-c3c6-4117-a6e9-91a2ebc82014",
       "Heater"
+    ],
+    [
+      "d5060ff5-86f5-4681-be53-c236c782c8a7",
+      "Peripherals"
     ]
   ],
   "text_variables": {}

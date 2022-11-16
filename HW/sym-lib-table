@@ -4,4 +4,7 @@
   (lib (name "SMBJ20A")(type "KiCad")(uri "${KIPRJMOD}/symbols/SMBJ20A.kicad_sym")(options "")(descr ""))
   (lib (name "TS30042")(type "KiCad")(uri "${KIPRJMOD}/symbols/TS30042.kicad_sym")(options "")(descr ""))
   (lib (name "MCP4716")(type "KiCad")(uri "${KIPRJMOD}/symbols/MCP4716.kicad_sym")(options "")(descr ""))
+  (lib (name "PMPB08R5XN")(type "KiCad")(uri "${KIPRJMOD}/symbols/PMPB08R5XN.kicad_sym")(options "")(descr ""))
+  (lib (name "RQ3E100GNTB")(type "KiCad")(uri "${KIPRJMOD}/symbols/RQ3E100GNTB.kicad_sym")(options "")(descr ""))
+  (lib (name "BWVS005050404R7M00")(type "KiCad")(uri "${KIPRJMOD}/symbols/BWVS005050404R7M00.kicad_sym")(options "")(descr ""))
 )

@@ -1,29 +1,15 @@
 %TF.GenerationSoftware,KiCad,Pcbnew,(6.0.4)*%
-%TF.CreationDate,2022-11-13T13:18:27+02:00*%
+%TF.CreationDate,2022-11-15T14:34:14+02:00*%
 %TF.ProjectId,pcb_heater_element,7063625f-6865-4617-9465-725f656c656d,rev?*%
 %TF.SameCoordinates,Original*%
 %TF.FileFunction,Copper,L2,Bot*%
 %TF.FilePolarity,Positive*%
 %FSLAX46Y46*%
 G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
-G04 Created by KiCad (PCBNEW (6.0.4)) date 2022-11-13 13:18:27*
+G04 Created by KiCad (PCBNEW (6.0.4)) date 2022-11-15 14:34:14*
 %MOMM*%
 %LPD*%
 G01*
 G04 APERTURE LIST*
-%TA.AperFunction,ViaPad*%
-%ADD10C,0.800000*%
-%TD*%
 G04 APERTURE END LIST*
-D10*
-%TO.N,*%
-X111750732Y-218750000D03*
-X111750732Y-220750000D03*
-X111750732Y-217750000D03*
-X111750732Y-221750000D03*
-X111750732Y-216750000D03*
-X111750732Y-215750000D03*
-X111750732Y-219750000D03*
-X111750732Y-222750000D03*
-%TD*%
 M02*

@@ -1,4 +1,11 @@
 (fp_lib_table
   (lib (name "IRM-30-5")(type "KiCad")(uri "${KIPRJMOD}/footprints/IRM-30-5.pretty")(options "")(descr ""))
   (lib (name "Espressif")(type "KiCad")(uri "${KIPRJMOD}/footprints/Espressif.pretty")(options "")(descr ""))
+  (lib (name "SOT1220-2")(type "KiCad")(uri "${KIPRJMOD}/footprints/SOT1220-2.pretty")(options "")(descr ""))
+  (lib (name "HSMT-8")(type "KiCad")(uri "${KIPRJMOD}/footprints/HSMT-8.pretty")(options "")(descr ""))
+  (lib (name "SOTFL65P330X80-8N")(type "KiCad")(uri "${KIPRJMOD}/footprints/SOTFL65P330X80-8N.pretty")(options "")(descr ""))
+  (lib (name "LD90-23B12R2")(type "KiCad")(uri "${KIPRJMOD}/footprints/LD90-23B12R2.pretty")(options "")(descr ""))
+  (lib (name "BWVS005050404R7M00")(type "KiCad")(uri "${KIPRJMOD}/footprints/BWVS005050404R7M00.pretty/BWVS005050404R7M00.pretty")(options "")(descr ""))
+  (lib (name "1-1825027-1")(type "KiCad")(uri "${KIPRJMOD}/footprints/BWVS005050404R7M00.pretty/1-1825027-1.pretty")(options "")(descr ""))
+  (lib (name "SKRPACE010")(type "KiCad")(uri "${KIPRJMOD}/footprints/SKRPACE010.pretty")(options "")(descr ""))
 )
