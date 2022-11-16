@@ -91,7 +91,7 @@
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/ba275b6d-155e-4cf1-90d6-75d585d182ae"
       (reference "#PWR0107") (unit 1) (value "GND") (footprint "")
     )
-    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/c1c771ea-a1e7-45a9-a5af-40ad22abe344"
+    (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/7e1fdc9c-6d99-41e7-8afa-53cc2a081774"
       (reference "#PWR0108") (unit 1) (value "GND") (footprint "")
     )
     (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/3cb8be66-6e5e-4d7c-ac89-6a9bf45e76cd"
@@ -172,8 +172,14 @@
     (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/50651144-ded4-4d43-9ca9-93578f17c06b"
       (reference "#PWR0134") (unit 1) (value "GND") (footprint "")
     )
+    (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/1a2cac54-4d9f-4f7e-b824-4c02aa18e095"
+      (reference "#PWR0135") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/ef884200-af14-483c-8605-51e36d4f3b28"
+      (reference "#PWR0136") (unit 1) (value "+3.3V") (footprint "")
+    )
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/045e2b02-bbb9-4128-b50f-816a961b17ef"
-      (reference "C1") (unit 1) (value "1uF") (footprint "Capacitor_SMD:C_1206_3216Metric")
+      (reference "C1") (unit 1) (value "1u") (footprint "Capacitor_SMD:C_1206_3216Metric")
     )
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/c457d6bc-d372-4e5a-9060-512765531115"
       (reference "C2") (unit 1) (value "200uF") (footprint "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm")
@@ -217,6 +223,9 @@
     (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/855b6e1d-7d70-4534-8cdd-d0259a8a0142"
       (reference "D4") (unit 1) (value "PRTR5V0U2X") (footprint "Package_TO_SOT_SMD:SOT-143")
     )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/e1e1dade-c629-45e2-9590-84bf1f983cb2"
+      (reference "F1") (unit 1) (value "Fuse") (footprint "")
+    )
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/c644c8a6-c3c5-4ff3-88ff-9cae94180919"
       (reference "H1") (unit 1) (value "MH2") (footprint "MountingHole:MountingHole_3.2mm_M3_Pad_TopBottom")
     )
@@ -256,6 +265,9 @@
     (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/af7fe1b7-7b8f-4414-84f3-6d7f95f0d5b6"
       (reference "J4") (unit 1) (value "USB_C_Receptacle_USB2.0") (footprint "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12")
     )
+    (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/e5bbae67-8d26-4a65-864d-2fb7a3faedbd"
+      (reference "J5") (unit 1) (value "OLED") (footprint "")
+    )
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/dbf72bfa-520e-4065-b2a1-01f3bfc4970d"
       (reference "L1") (unit 1) (value "4u7") (footprint "BWVS005050404R7M00:BWVS005050404R7M00")
     )
@@ -272,7 +284,7 @@
       (reference "Q3") (unit 1) (value "BC817") (footprint "Package_TO_SOT_SMD:SOT-23")
     )
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/6513e9fc-4e19-469b-8067-3b0709c18998"
-      (reference "R1") (unit 1) (value "BR_DNP") (footprint "Resistor_SMD:R_1210_3225Metric")
+      (reference "R1") (unit 1) (value "BR_DNP") (footprint "Resistor_SMD:R_2010_5025Metric")
     )
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/49d5e1fc-7906-44bc-b5b9-ac01ba36374d"
       (reference "R2") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
@@ -283,13 +295,13 @@
     (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/7da99cbc-f19e-41f3-94a5-0e2fd41d03ff"
       (reference "R4") (unit 1) (value "1k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
-    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/74c5d438-465d-46be-9ca4-ceb3d71d3209"
+    (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/5619a61a-8e45-4520-aad3-c06437cfa4d7"
       (reference "R5") (unit 1) (value "1k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
-    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/7ee2083e-fc0e-4e0e-9125-a4c764e65621"
+    (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/5e7f8383-c864-46ac-8bd0-8019a803d050"
       (reference "R6") (unit 1) (value "1k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
-    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/cc44b9c2-448c-4ae5-b0e9-a63801041270"
+    (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/11fd450b-9df5-4025-92b4-f1d57475e4a5"
       (reference "R7") (unit 1) (value "1k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/a7653bac-fed3-4da3-8b4d-70e85d5a0d86"
@@ -337,20 +349,23 @@
     (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/d941fcc2-e6c0-478e-a97e-3ad1e90c7b68"
       (reference "R22") (unit 1) (value "5k1") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/148bb485-e2d7-44ab-bb72-8b86044b8b97"
+      (reference "RV1") (unit 1) (value "Varistor") (footprint "")
+    )
+    (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/ef351f97-12de-4379-b4d9-0c6fd691ebe5"
+      (reference "SW1") (unit 1) (value "SW_SPST") (footprint "1-1825027-1:SW_1-1825027-1")
+    )
     (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/3f98aa75-d263-43ba-893d-3d91d04a8ac1"
       (reference "SW2") (unit 1) (value "SW_DPST") (footprint "SKRPACE010:SW_SKRPACE010")
     )
     (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/42f3743b-409f-4056-aa58-ecda1f8fc896"
       (reference "SW3") (unit 1) (value "SW_DPST") (footprint "SKRPACE010:SW_SKRPACE010")
     )
-    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/22432607-91b3-4aef-8e68-a34ea0fb5ecb"
+    (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/8d19eb09-4bd0-4612-9bb2-8f7eee94971b"
       (reference "SW4") (unit 1) (value "SW_SPST") (footprint "1-1825027-1:SW_1-1825027-1")
     )
-    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/dfdff583-90db-47dc-8708-0e3cff9d445c"
+    (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/10bc1d4a-fbe1-45d8-85f4-1c71edbf056a"
       (reference "SW5") (unit 1) (value "SW_SPST") (footprint "1-1825027-1:SW_1-1825027-1")
-    )
-    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/5ad35430-badc-4837-b57f-256cca904977"
-      (reference "SW6") (unit 1) (value "SW_SPST") (footprint "1-1825027-1:SW_1-1825027-1")
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/36dad684-14a6-4fa8-a60b-38b9d5c41886"
       (reference "TH1") (unit 1) (value "Heater_1") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
