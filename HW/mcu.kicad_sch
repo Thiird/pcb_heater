@@ -188,7 +188,7 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "1" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "43" (effects (font (size 1.27 1.27))))
         )
@@ -200,83 +200,83 @@
           (name "CHIP/PU/RESET" (effects (font (size 1.27 1.27))))
           (number "45" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "46" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "47" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "48" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "49" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "50" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "51" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "52" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "53" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "54" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "55" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "56" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "57" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "58" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "59" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "60" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "61" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "62" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "63" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "64" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "65" (effects (font (size 1.27 1.27))))
         )
@@ -326,7 +326,7 @@
           (name "GPIO15/ADC2_CH4/XTAL_32K_P" (effects (font (size 1.27 1.27))))
           (number "19" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "2" (effects (font (size 1.27 1.27))))
         )
@@ -374,7 +374,7 @@
           (name "3V3" (effects (font (size 1.27 1.27))))
           (number "3" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "30" (effects (font (size 1.27 1.27))))
         )
@@ -426,7 +426,7 @@
           (name "GPIO45" (effects (font (size 1.27 1.27))))
           (number "41" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at -31.75 -31.75 0) (length 2.54) hide
+        (pin passive line (at -19.05 -36.83 90) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "42" (effects (font (size 1.27 1.27))))
         )
@@ -686,9 +686,8 @@
 
   (no_connect (at 48.26 54.61) (uuid 2cf29f29-b2e0-4167-a609-86faadd4ac2c))
   (no_connect (at 48.26 52.07) (uuid 352450aa-2858-4d8b-9516-b56cf78fe5b7))
-  (no_connect (at 48.26 90.17) (uuid b473e1cb-1e39-4b22-a67b-f7c4900d44a5))
 
-  (wire (pts (xy 60.96 105.41) (xy 60.96 109.22))
+  (wire (pts (xy 60.96 105.41) (xy 60.96 107.95))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 002e868a-377d-40a5-a10e-baf910eabb69)
   )
@@ -716,6 +715,10 @@
   (wire (pts (xy 203.2 40.64) (xy 203.2 45.72))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 197ff0f6-0be6-4770-826e-5dccdaab3d79)
+  )
+  (wire (pts (xy 106.68 52.07) (xy 128.27 52.07))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid 1b6f1bfa-c85a-4e68-96f8-3660cd8faeca)
   )
   (wire (pts (xy 149.86 40.64) (xy 149.86 41.91))
     (stroke (width 0) (type default) (color 0 0 0 0))
@@ -931,6 +934,10 @@
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid dcb3fa8c-6253-4fc7-8bdd-c9fc228808ef)
   )
+  (wire (pts (xy 128.27 52.07) (xy 128.27 56.515))
+    (stroke (width 0) (type default) (color 0 0 0 0))
+    (uuid e0ddf274-2be4-4f6b-966b-61df87d3b4f5)
+  )
   (wire (pts (xy 22.86 35.56) (xy 22.86 38.1))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid e14c17ac-4d58-4c14-8e6d-375aacb52d30)
@@ -1020,10 +1027,10 @@
     (uuid eb0dfb93-f3f8-42cf-875d-780dbf058a98)
   )
 
-  (global_label "temp_heater_3" (shape input) (at 106.68 82.55 0) (fields_autoplaced)
+  (global_label "temp_heater_3" (shape input) (at 106.68 46.99 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 0a0a65ca-2e9c-4f03-b6d8-9cb15b028b01)
-    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 122.8817 82.6294 0)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 122.8817 47.0694 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
@@ -1048,10 +1055,10 @@
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
-  (global_label "user_action" (shape input) (at 106.68 80.01 0) (fields_autoplaced)
+  (global_label "user_action" (shape input) (at 106.68 72.39 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 50674994-5a45-45db-86f9-7bfbbba4c726)
-    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 119.9788 80.0894 0)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 119.9788 72.4694 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
@@ -1069,10 +1076,10 @@
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
-  (global_label "SDA" (shape input) (at 106.68 52.07 0) (fields_autoplaced)
+  (global_label "SDA" (shape input) (at 106.68 90.17 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 5f23a1a5-4448-44fb-8d36-c126cf7a44a9)
-    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 112.6612 51.9906 0)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 112.6612 90.0906 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
@@ -1083,18 +1090,25 @@
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
-  (global_label "temp_heater_1" (shape input) (at 106.68 54.61 0) (fields_autoplaced)
+  (global_label "temp_heater_1" (shape input) (at 106.68 41.91 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 6defcb73-3f83-4fdd-bd99-c6267be42986)
-    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 122.8817 54.6894 0)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 122.8817 41.9894 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
-  (global_label "current_sense_LOW" (shape input) (at 48.26 87.63 180) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify right))
+  (global_label "mosfet_gate" (shape input) (at 106.68 39.37 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid 76ae0a33-e2d8-4692-8a1e-20b491025a2c)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 120.5836 39.4494 0)
+      (effects (font (size 1.27 1.27)) (justify left) hide)
+    )
+  )
+  (global_label "current_sense_LOW" (shape input) (at 106.68 49.53 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left))
     (uuid 7a1f5ebf-817f-4b82-870d-17e8fb8359ac)
-    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 27.9459 87.7094 0)
-      (effects (font (size 1.27 1.27)) (justify right) hide)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 126.9941 49.4506 0)
+      (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
   (global_label "temperature_plus" (shape input) (at 106.68 74.93 0) (fields_autoplaced)
@@ -1104,10 +1118,10 @@
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
-  (global_label "temp_mosfet" (shape input) (at 106.68 85.09 0) (fields_autoplaced)
+  (global_label "temp_mosfet" (shape input) (at 106.68 57.15 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 96516425-ede8-4049-ae62-0e1fbcc1e6ae)
-    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 121.1279 85.1694 0)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 121.1279 57.2294 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
@@ -1125,10 +1139,10 @@
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
-  (global_label "temp_heater_2" (shape input) (at 106.68 57.15 0) (fields_autoplaced)
+  (global_label "temp_heater_2" (shape input) (at 106.68 44.45 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid ce8e25c5-f92b-45a3-b394-497282105bc5)
-    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 122.8817 57.2294 0)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 122.8817 44.5294 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
@@ -1139,10 +1153,10 @@
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
-  (global_label "SCL" (shape input) (at 106.68 49.53 0) (fields_autoplaced)
+  (global_label "SCL" (shape input) (at 106.68 87.63 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid f76ee94f-5175-4e0f-8afe-9e5bd122cae5)
-    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 112.6007 49.4506 0)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 112.6007 87.5506 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
@@ -1161,6 +1175,22 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 6fa47416-d65e-46a4-8fdf-6c253bc34ec1))
+  )
+
+  (symbol (lib_id "power:GND") (at 128.27 56.515 0) (unit 1)
+    (in_bom yes) (on_board yes) (fields_autoplaced)
+    (uuid 232f6c06-139a-4336-8d67-933554f3ab67)
+    (property "Reference" "#PWR0129" (id 0) (at 128.27 62.865 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (id 1) (at 128.27 60.9584 0))
+    (property "Footprint" "" (id 2) (at 128.27 56.515 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (id 3) (at 128.27 56.515 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 8038572e-7bfb-4a18-b489-bf0d0e47353d))
   )
 
   (symbol (lib_id "Espressif:ESP32-S2-MINI-1") (at 80.01 68.58 0) (unit 1)
@@ -1337,17 +1367,17 @@
     (pin "5" (uuid f07bf08d-bda3-4cd0-bdee-012cd9646dbe))
   )
 
-  (symbol (lib_id "power:GND") (at 60.96 109.22 0) (unit 1)
+  (symbol (lib_id "power:GND") (at 60.96 107.95 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 49ee0e50-b35c-47b0-ac88-e47bdd5e08e2)
-    (property "Reference" "#PWR0111" (id 0) (at 60.96 115.57 0)
+    (property "Reference" "#PWR0111" (id 0) (at 60.96 114.3 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "GND" (id 1) (at 60.96 113.6634 0))
-    (property "Footprint" "" (id 2) (at 60.96 109.22 0)
+    (property "Value" "GND" (id 1) (at 60.96 112.3934 0))
+    (property "Footprint" "" (id 2) (at 60.96 107.95 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "" (id 3) (at 60.96 109.22 0)
+    (property "Datasheet" "" (id 3) (at 60.96 107.95 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid a18bf826-3311-4983-839d-1694677a43b5))
