@@ -7,4 +7,5 @@
   (lib (name "PMPB08R5XN")(type "KiCad")(uri "${KIPRJMOD}/symbols/PMPB08R5XN.kicad_sym")(options "")(descr ""))
   (lib (name "RQ3E100GNTB")(type "KiCad")(uri "${KIPRJMOD}/symbols/RQ3E100GNTB.kicad_sym")(options "")(descr ""))
   (lib (name "BWVS005050404R7M00")(type "KiCad")(uri "${KIPRJMOD}/symbols/BWVS005050404R7M00.kicad_sym")(options "")(descr ""))
+  (lib (name "fork_press_connector")(type "KiCad")(uri "${KIPRJMOD}/symbols/fork_press_connector.kicad_sym")(options "")(descr ""))
 )

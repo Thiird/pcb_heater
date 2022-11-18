@@ -1,4 +1,4 @@
-20155027699550818
+20163378113865732
 1-1825027-1
 SW_1-1825027-1
 
@@ -6,6 +6,13 @@ SW_1-1825027-1
 0
 4
 3
+3622_fuse_holder
+3622
+
+
+0
+2
+2
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -20,6 +27,13 @@ audio belton reverb
 0
 7
 7
+B72214S0351K101
+B72214S0351K101
+
+
+0
+2
+2
 BWVS005050404R7M00
 BWVS005050404R7M00
 
@@ -85637,3 +85651,24 @@ varistor SIOV
 0
 2
 2
+WR_TBL_Series_101
+WR_TBL_Series_101
+
+
+0
+2
+2
+fork_connector_p5.0mm
+fork_p5.0mm
+
+
+0
+2
+1
+oled_angled
+oled_angled
+
+
+0
+2
+1
