@@ -13,50 +13,50 @@
   )
 
 
-  (sheet (at 130.81 71.12) (size 35.56 24.13) (fields_autoplaced)
+  (sheet (at 154.94 71.12) (size 35.56 24.13) (fields_autoplaced)
     (stroke (width 0.1524) (type solid) (color 0 0 0 0))
     (fill (color 0 0 0 0.0000))
     (uuid 7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8)
-    (property "Sheet name" "MCU" (id 0) (at 130.81 69.5434 0)
+    (property "Sheet name" "MCU" (id 0) (at 154.94 69.5434 0)
       (effects (font (size 3 3)) (justify left bottom))
     )
-    (property "Sheet file" "mcu.kicad_sch" (id 1) (at 130.81 95.8346 0)
+    (property "Sheet file" "mcu.kicad_sch" (id 1) (at 154.94 95.8346 0)
       (effects (font (size 1.27 1.27)) (justify left top))
     )
   )
 
-  (sheet (at 130.81 111.76) (size 35.56 21.59) (fields_autoplaced)
+  (sheet (at 154.94 111.76) (size 35.56 21.59) (fields_autoplaced)
     (stroke (width 0.1524) (type solid) (color 0 0 0 0))
     (fill (color 0 0 0 0.0000))
     (uuid b389637b-c3c6-4117-a6e9-91a2ebc82014)
-    (property "Sheet name" "Heater" (id 0) (at 130.81 110.1834 0)
+    (property "Sheet name" "Heater" (id 0) (at 154.94 110.1834 0)
       (effects (font (size 3 3)) (justify left bottom))
     )
-    (property "Sheet file" "heater.kicad_sch" (id 1) (at 130.81 133.9346 0)
+    (property "Sheet file" "heater.kicad_sch" (id 1) (at 154.94 133.9346 0)
       (effects (font (size 1.27 1.27)) (justify left top))
     )
   )
 
-  (sheet (at 82.55 111.76) (size 35.56 21.59) (fields_autoplaced)
+  (sheet (at 106.68 111.76) (size 35.56 21.59) (fields_autoplaced)
     (stroke (width 0.1524) (type solid) (color 0 0 0 0))
     (fill (color 0 0 0 0.0000))
     (uuid d5060ff5-86f5-4681-be53-c236c782c8a7)
-    (property "Sheet name" "Peripherals" (id 0) (at 82.55 110.1834 0)
+    (property "Sheet name" "Peripherals" (id 0) (at 106.68 110.1834 0)
       (effects (font (size 3 3)) (justify left bottom))
     )
-    (property "Sheet file" "peripherals.kicad_sch" (id 1) (at 82.55 133.9346 0)
+    (property "Sheet file" "peripherals.kicad_sch" (id 1) (at 106.68 133.9346 0)
       (effects (font (size 1.27 1.27)) (justify left top))
     )
   )
 
-  (sheet (at 82.55 71.12) (size 35.56 24.13) (fields_autoplaced)
+  (sheet (at 106.68 71.12) (size 35.56 24.13) (fields_autoplaced)
     (stroke (width 0.1524) (type solid) (color 0 0 0 0))
     (fill (color 0 0 0 0.0000))
     (uuid d8f51e65-ca8c-412e-9c09-61e73d04032d)
-    (property "Sheet name" "Power" (id 0) (at 82.55 69.5434 0)
+    (property "Sheet name" "Power" (id 0) (at 106.68 69.5434 0)
       (effects (font (size 3 3)) (justify left bottom))
     )
-    (property "Sheet file" "Power.kicad_sch" (id 1) (at 82.55 95.8346 0)
+    (property "Sheet file" "Power.kicad_sch" (id 1) (at 106.68 95.8346 0)
       (effects (font (size 1.27 1.27)) (justify left top))
     )
   )
@@ -136,6 +136,12 @@
     (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/8419e7c5-40f6-4cda-ae5f-bcc61551b83d"
       (reference "#PWR0122") (unit 1) (value "GND") (footprint "")
     )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/b2ac66fc-dea3-4696-bc8f-d9148d41c51c"
+      (reference "#PWR0123") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/122b5dca-3917-40a7-9684-41c0803b0811"
+      (reference "#PWR0124") (unit 1) (value "GND") (footprint "")
+    )
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/bb76d7e0-0d4f-4d41-8360-0ab29495ced5"
       (reference "#PWR0128") (unit 1) (value "GND") (footprint "")
     )
@@ -201,6 +207,9 @@
     )
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/5e11ffe8-3c09-4cd3-9d23-702f452db606"
       (reference "D2") (unit 1) (value "RED") (footprint "LED_SMD:LED_0603_1608Metric")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/b36f7a51-7fc9-4dcf-982f-9f2874a3c642"
+      (reference "D3") (unit 1) (value "RED") (footprint "LED_SMD:LED_0603_1608Metric")
     )
     (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/855b6e1d-7d70-4534-8cdd-d0259a8a0142"
       (reference "D4") (unit 1) (value "PRTR5V0U2X") (footprint "Package_TO_SOT_SMD:SOT-143")
@@ -275,10 +284,10 @@
       (reference "R9") (unit 1) (value "22k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/deda6d3e-4c97-4d01-86a8-1cb7bde9addb"
-      (reference "R10") (unit 1) (value "100k") (footprint "Resistor_SMD:R_0603_1608Metric")
+      (reference "R10") (unit 1) (value "22k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/dc72ae8b-3f09-4409-92cd-78a4bbab9662"
-      (reference "R11") (unit 1) (value "37k") (footprint "Resistor_SMD:R_0603_1608Metric")
+      (reference "R11") (unit 1) (value "5k1") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/2b2a43cb-e8f2-47be-b245-c6b5f863b4db"
       (reference "R12") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
@@ -294,6 +303,12 @@
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/e04ffae2-b7ed-4911-b24f-d951a6fd3202"
       (reference "R16") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
+    )
+    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/07b29739-f4d4-485c-ab03-7f3ae065db9b"
+      (reference "R17") (unit 1) (value "TBD") (footprint "Resistor_SMD:R_0603_1608Metric")
+    )
+    (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/7e03442e-c2ed-45f2-a63e-c80e79234444"
+      (reference "R18") (unit 1) (value "1k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/d5060ff5-86f5-4681-be53-c236c782c8a7/d78f8059-f0db-41c1-af68-e8edb59a9047"
       (reference "R19") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
@@ -326,16 +341,16 @@
       (reference "SW5") (unit 1) (value "SW_SPST") (footprint "1-1825027-1:SW_1-1825027-1")
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/36dad684-14a6-4fa8-a60b-38b9d5c41886"
-      (reference "TH1") (unit 1) (value "Heater_1") (footprint "TestPoint:TestPoint_2Pads_Pitch2.54mm_Drill0.8mm")
+      (reference "TH1") (unit 1) (value "Heater_1") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/92251fe2-af60-40b0-8d5b-016c827aa918"
-      (reference "TH2") (unit 1) (value "Heater_2") (footprint "TestPoint:TestPoint_2Pads_Pitch2.54mm_Drill0.8mm")
+      (reference "TH2") (unit 1) (value "Heater_2") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/d6231291-1ddc-4f8a-b861-15aa16195f01"
-      (reference "TH3") (unit 1) (value "Heater_3") (footprint "TestPoint:TestPoint_2Pads_Pitch2.54mm_Drill0.8mm")
+      (reference "TH3") (unit 1) (value "Heater_3") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/0a720116-f99e-41d0-ba4c-69a9b7e14b24"
-      (reference "TH4") (unit 1) (value "mosfet") (footprint "TestPoint:TestPoint_2Pads_Pitch2.54mm_Drill0.8mm")
+      (reference "TH4") (unit 1) (value "mosfet") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
     )
     (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/39757241-0951-4c4d-a6c3-1fb3ba34292c"
       (reference "U1") (unit 1) (value "ESP32-S2-MINI-2") (footprint "Espressif:ESP32-S2-MINI-1")
@@ -351,6 +366,9 @@
     )
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/f1cbe8f9-4e42-48f8-8456-7138d1b305dc"
       (reference "U5") (unit 1) (value "fork_p5.0mm") (footprint "fork_connector_p5.0mm:fork_p5.0mm")
+    )
+    (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/8bec05cb-ebfd-4afb-9364-60e211f8239f"
+      (reference "U6") (unit 1) (value "fork_p5.0mm") (footprint "fork_connector_p5.0mm:fork_p5.0mm")
     )
   )
 )
