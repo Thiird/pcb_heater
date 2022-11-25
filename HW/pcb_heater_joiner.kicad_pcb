@@ -80,7 +80,7 @@
       (plotinvisibletext false)
       (sketchpadsonfab false)
       (subtractmaskfromsilk false)
-      (outputformat 3)
+      (outputformat 1)
       (mirror false)
       (drillshape 0)
       (scaleselection 1)
@@ -93,7 +93,7 @@
   (gr_rect (start 92.25 67.5) (end 98.25 61.5) (layer "Dwgs.User") (width 0.15) (fill none) (tstamp 8f57b687-75f5-4196-9e3b-e4e077453556))
   (gr_rect (start 104.25 67.5) (end 110.25 61.5) (layer "Dwgs.User") (width 0.15) (fill none) (tstamp dd2d59b3-ddef-491f-bb57-eb3d3820bdeb))
   (gr_rect (start 91.25 60.5) (end 111.25 68.5) (layer "Edge.Cuts") (width 0.1) (fill none) (tstamp 929a4f85-fca5-4252-8c58-d978da2e96e9))
-  (gr_text "JLCJLCJLC" (at 101.25 64.5) (layer "B.SilkS") (tstamp 4fd1de20-57dd-403c-b12c-ed1f1dc3a62e)
+  (gr_text "JLCJLCJLCJLC" (at 101.25 64.5) (layer "B.SilkS") (tstamp 4fd1de20-57dd-403c-b12c-ed1f1dc3a62e)
     (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
   )
 

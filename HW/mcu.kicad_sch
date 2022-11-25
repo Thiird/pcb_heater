@@ -905,7 +905,7 @@
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 4ed59fbc-fb23-44d0-a994-7bf0aa0d102f)
   )
-  (wire (pts (xy 109.22 62.23) (xy 124.46 62.23))
+  (wire (pts (xy 109.22 62.23) (xy 123.19 62.23))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 4f143b1c-90a1-4d6e-a2e2-ac592dcece34)
   )
@@ -1116,7 +1116,7 @@
     (uuid bc3c8e45-952d-4a0d-b82e-1c4f4679860c)
   )
 
-  (label "activity_led" (at 124.46 62.23 180)
+  (label "activity_led" (at 123.19 62.23 180)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 22c424ac-2702-43e2-bcf3-c9925e70766e)
   )
