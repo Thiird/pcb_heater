@@ -14,6 +14,7 @@
   "files.associations": {
     "esp_log.h": "c",
     "gpio.h": "c",
-    "cstring": "c"
+    "cstring": "c",
+    "esp_intr_alloc.h": "c"
   }
 }
