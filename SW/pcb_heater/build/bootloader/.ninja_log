@@ -108,3 +108,7 @@
 1781	1965	1670079856958500490	/home/stefano/repo/pcb_heater/SW/pcb_heater/build/bootloader/.bin_timestamp	99d261d980317e83
 1965	2036	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	29445dacbd6bda82
 1965	2036	0	/home/stefano/repo/pcb_heater/SW/pcb_heater/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	29445dacbd6bda82
+1	26	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	29445dacbd6bda82
+1	26	0	/home/stefano/repo/pcb_heater/SW/pcb_heater/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	29445dacbd6bda82
+1	27	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	29445dacbd6bda82
+1	27	0	/home/stefano/repo/pcb_heater/SW/pcb_heater/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	29445dacbd6bda82

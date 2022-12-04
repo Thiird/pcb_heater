@@ -10,5 +10,10 @@
   "idf.toolsPath": "/home/stefano/.espressif",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "C_Cpp.errorSquiggles": "enabled"
+  "C_Cpp.errorSquiggles": "enabled",
+  "files.associations": {
+    "esp_log.h": "c",
+    "gpio.h": "c",
+    "cstring": "c"
+  }
 }
