@@ -6,14 +6,23 @@
 #include "driver/gpio.h"
 #include "driver/uart.h"
 #include "hal/uart_types.h"
+#include "hal/adc_types.h"
+#include "esp_adc/adc_oneshot.h"
 
 #define ACTIVITY_LED 4   // GPIO4, activity led, active high
 #define TEMP_INC_BTN 7   // GPIO7, increase target temperature, active low
 #define TEMP_DEC_BTN 8   // GPIO8, decrease target temperature, active low
 #define START_STOP_BTN 9 // GPIO9, start/stop heating, active low
 
+uint8_t heater_current_I = 0;
+uint8_t heater_current_temp_F = 0;
+float heater_current_temp_C = 0;
 uint8_t heater_target_temp = 20; // degrees Celsius
 bool is_heating_active = false;
+
+adc_oneshot_unit_handle_t adc2_handle = NULL;
+uint16_t adcTempVal = 0;
+uint16_t adcIVal = 0;
 
 void update_oled()
 {
@@ -21,10 +30,29 @@ void update_oled()
 
 void read_heater_current()
 {
+    // I = V / R
+
+    adc_oneshot_read(&adc2_handle, ADC_CHANNEL_3, &adcIVal);
+
+    heater_current_I = 0;
 }
 
 void read_heater_temp()
 {
+    // Reference: https://www.jameco.com/Jameco/workshop/TechTip/temperature-measurement-ntc-thermistors.html
+
+    adc_oneshot_read(&adc2_handle, ADC_CHANNEL_3, &adcTempVal);
+    // NTC thermistor config: +12V---NTC---10kOhm---GND
+    // Usual v. divider equation is Vout = Vs * (R0 / ( Rt + R0 ))
+    // Rearrange to find NTC resistance: Rt = R0 * (( Vs / Vout ) - 1)
+    // In our case the ADC's Vref is equal to the Vin of the V. divider
+    // so we can say: adcMax / adcTempVal = Vref / Vout
+    // With this we can simplify to Rt = R0 * ((adcMax / adcTempVal) - 1)
+    // ADC on ESP32-S2 is 12-bit, so adcMax is 4095
+    heater_current_temp_F = 10000 * ((4095 / adcTempVal) - 1);
+
+    // Fahrenheit --> Celsius
+    heater_current_temp_C = (heater_current_temp_F - 32) / 1.8;
 }
 
 void isr_change_heater_target_temp(uint8_t value)
@@ -35,6 +63,38 @@ void isr_change_heater_target_temp(uint8_t value)
 void isr_start_stop_heating()
 {
     is_heating_active = !is_heating_active;
+}
+
+esp_err_t init_i2c()
+{
+    return ESP_OK;
+}
+
+esp_err_t init_adc()
+{
+    // Configure ADC2 instance
+    adc_oneshot_unit_init_cfg_t adc2_config = {
+        .unit_id = ADC_UNIT_2,
+        .ulp_mode = ADC_ULP_MODE_DISABLE,
+    };
+    ESP_ERROR_CHECK(adc_oneshot_new_unit(&adc2_config, &adc2_handle));
+
+    // Create config for ADC channel
+    adc_oneshot_chan_cfg_t config = {
+        .bitwidth = ADC_BITWIDTH_12, // can't use 13 bits, bit 1 always 0, see errata
+        .atten = ADC_ATTEN_DB_11,
+    };
+
+    // Apply config to Channel0-ADC2, mosfet temp
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_0, &config));
+
+    // Apply config to Channel3-ADC3, room temp
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_3, &config));
+
+    // Apply config to Channel4-ADC2, heater temp (middle unit)
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_4, &config));
+
+    return ESP_OK;
 }
 
 esp_err_t init_gpio()
@@ -108,8 +168,10 @@ esp_err_t init_uart()
 
 void app_main(void)
 {
-    init_gpio();
     init_uart();
+    init_gpio();
+    init_i2c();
+    init_adc();
 
     char test_str[32];
     static uint8_t led_state = 0;
