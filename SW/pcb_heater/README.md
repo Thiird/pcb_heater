@@ -1,35 +1,21 @@
-| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-S2 | ESP32-S3 |
-| ----------------- | ----- | -------- | -------- | -------- | -------- |
+# PCB Heater Firmware
 
-# _Sample project_
+The firmware for the ESP32 is written with the ESP-IDF framework and runs FreeRTOS.
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+The task run by the MCU are described below (no specific order).
 
-This is the simplest buildable example. The example is used by command `idf.py create-project`
-that copies the project to user specified path and set it's name. For more information follow the [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project)
+## Monitoring the heater
 
+The temperature of the heater is monitored through an NTC Thermistor as part of a voltage divider. The current going through the heater is monitored by sampling the Voltage on the low-side of the heater as Vref of a voltage divider.
 
+## Listening for button presses
 
-## How to use example
-We encourage the users to use the example as a template for the new projects.
-A recommended way is to follow the instructions on a [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project).
+The user can access three buttons:
 
-## Example folder contents
+- **Temp +**, to increase the temperature setpoint
+- **Temp -**, to decrease the temperature setpoint
+- **Start/Stop**, to start/stop the heating element
 
-The project **sample_project** contains one source file in C language [main.c](main/main.c). The file is located in folder [main](main).
+## Updating the OLED screen
 
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt`
-files that provide set of directives and instructions describing the project's source files and targets
-(executable, library, or both). 
-
-Below is short explanation of remaining files in the project folder.
-
-```
-├── CMakeLists.txt
-├── main
-│   ├── CMakeLists.txt
-│   └── main.c
-└── README.md                  This is the file you are currently reading
-```
-Additionally, the sample project contains Makefile and component.mk files, used for the legacy Make based build system. 
-They are not used or needed when building with CMake and idf.py.
+Through the I2C OLED screen the user can monitor the heater temperature and the setpoint.

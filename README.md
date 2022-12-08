@@ -1,0 +1,2 @@
+#  PCB Heater
+As part of my journey in embedded systems I try to learn new technologies with projects that fix inconveniences in my life. One such inconvenience is that during the winter time, especially in the evening, during long computer-session my feet get terribly cold. So cold that when I finally take a few steps it hurts in the first moments.
