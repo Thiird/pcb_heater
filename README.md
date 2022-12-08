@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PCB Heater
 
 
@@ -29,3 +30,7 @@ The driver PCB is enclosed in a 3D printed case, which is screwed on top of the 
 
 
 # End result
+=======
+#  PCB Heater
+As part of my journey in embedded systems I try to learn new technologies with projects that fix inconveniences in my life. One such inconvenience is that during the winter time, especially in the evening, during long computer-session my feet get terribly cold. So cold that when I finally take a few steps it hurts in the first moments.
+>>>>>>> 77ee9c06f0cd5e7a1b0c65d5baad242366b1fe11
