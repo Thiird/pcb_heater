@@ -18,7 +18,6 @@
 #define I2C_SCL 12           // GPIO12
 #define I2C_FREQUENCY 100000 // 100Kbit
 #define I2C_USED_PORT I2C_NUM_0
-#define OLED_ADDRESS 0x451 || 1 << 7 // TODO write only
 
 uint8_t heater_current_I = 0;
 uint8_t heater_current_temp_F = 0;
