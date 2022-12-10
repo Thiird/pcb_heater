@@ -9,15 +9,12 @@
 #include "hal/uart_types.h"
 #include "hal/adc_types.h"
 #include "esp_adc/adc_oneshot.h"
+#include "../include/i2c.h"
 
-#define ACTIVITY_LED 4       // GPIO4, activity led, active high
-#define TEMP_INC_BTN 7       // GPIO7, increase target temperature, active low
-#define TEMP_DEC_BTN 8       // GPIO8, decrease target temperature, active low
-#define START_STOP_BTN 9     // GPIO9, start/stop heating, active low
-#define I2C_SDA 13           // GPIO13
-#define I2C_SCL 12           // GPIO12
-#define I2C_FREQUENCY 100000 // 100Kbit
-#define I2C_USED_PORT I2C_NUM_0
+#define ACTIVITY_LED 4   // GPIO4, activity led, active high
+#define TEMP_INC_BTN 7   // GPIO7, increase target temperature, active low
+#define TEMP_DEC_BTN 8   // GPIO8, decrease target temperature, active low
+#define START_STOP_BTN 9 // GPIO9, start/stop heating, active low
 
 uint8_t heater_current_I = 0;
 uint8_t heater_current_temp_F = 0;
@@ -68,40 +65,6 @@ void isr_change_heater_target_temp(uint8_t value)
 void isr_start_stop_heating()
 {
     is_heating_active = !is_heating_active;
-}
-
-esp_err_t i2c_write(const uint8_t *data, uint8_t data_len)
-{
-    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-
-    i2c_master_start(cmd);
-    i2c_master_write_byte(cmd, OLED_ADDRESS, true);
-    i2c_master_write(cmd, data, data_len, true); // size_t data_len?
-    i2c_master_stop(cmd);
-
-    i2c_master_cmd_begin(I2C_USED_PORT, cmd, true);
-
-    i2c_cmd_link_delete(cmd);
-
-    return ESP_OK;
-}
-
-esp_err_t init_i2c()
-{
-    // OLED i2c port
-    i2c_config_t conf = {
-        .mode = I2C_MODE_MASTER,
-        .sda_io_num = I2C_SDA,
-        .sda_pullup_en = GPIO_PULLUP_DISABLE, // already on board
-        .scl_io_num = I2C_SCL,
-        .scl_pullup_en = GPIO_PULLUP_DISABLE, // already on board
-        .master.clk_speed = I2C_FREQUENCY,
-        .clk_flags = 0};
-    ESP_ERROR_CHECK(i2c_param_config(I2C_USED_PORT, &conf));
-
-    ESP_ERROR_CHECK(i2c_driver_install(I2C_USED_PORT, I2C_MODE_MASTER, NULL, NULL, ESP_INTR_FLAG_LEVEL6));
-
-    return ESP_OK;
 }
 
 esp_err_t init_adc()
