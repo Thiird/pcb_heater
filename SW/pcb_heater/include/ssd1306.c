@@ -60,6 +60,34 @@ void ssd1306_init()
     i2c_write(OLED_ADDRESS, SET_DISPLAY_ON, 1);
 }
 
+void ssd1306_test()
+{
+    uint64_t temp_reg = 0;
+
+    // Set Memory Addressing Mode to horizontal
+    temp_reg |= SET_MEMORY_ADDRESS_MODE;
+    i2c_write(OLED_ADDRESS || I2C_WRITE, SET_MEMORY_ADDRESS_MODE, 1);
+
+    // Set Column start-end address
+
+    // Set Page start-end address
+
+    // Fill alternated pages
+    for (uint8_t page = 0; page < 7; page++) // pages
+    {
+        if (page % 2 == 0)
+        {
+            for (uint8_t com = 0; com < 7; com++)
+            {
+                for (uint8_t seg = 0; seg < 127; seg++)
+                {
+                    i2c_write();
+                }
+            }
+        }
+    }
+}
+
 void ssd1306_write_temp()
 {
 }

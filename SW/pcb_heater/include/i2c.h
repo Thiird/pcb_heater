@@ -11,4 +11,4 @@
 #define I2C_READ 1
 
 esp_err_t init_i2c();
-void i2c_write(uint8_t addr, uint8_t data, uint8_t len);
+void i2c_write(uint8_t addr, uint8_t *data, uint8_t len);

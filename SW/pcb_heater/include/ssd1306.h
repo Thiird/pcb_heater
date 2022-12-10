@@ -1,3 +1,5 @@
+#include "inttypes.h"
+
 #define OLED_SAO_BIT 0
 #define OLED_ADDRESS 0b011110 || OLED_SAO_BIT << 1
 #define SSD1306_CMD 0
@@ -10,6 +12,7 @@
 #define SET_OSC_FREQUENCY 0xD5
 #define SET_DISPLAY_ON 0xAE
 #define SET_DISPLAY_OFF 0xAF
+#define SET_MEMORY_ADDRESS_MODE 0x20
 
 uint8_t symbol[] =
     {

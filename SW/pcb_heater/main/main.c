@@ -5,22 +5,30 @@
 #include "esp_intr_alloc.h"
 #include "driver/gpio.h"
 #include "driver/uart.h"
+#include "driver/ledc.h"
 #include "driver/i2c.h"
 #include "hal/uart_types.h"
 #include "hal/adc_types.h"
 #include "esp_adc/adc_oneshot.h"
 #include "../include/i2c.h"
 
-#define ACTIVITY_LED 4   // GPIO4, activity led, active high
-#define TEMP_INC_BTN 7   // GPIO7, increase target temperature, active low
-#define TEMP_DEC_BTN 8   // GPIO8, decrease target temperature, active low
-#define START_STOP_BTN 9 // GPIO9, start/stop heating, active low
+#define ACTIVITY_LED 4        // GPIO4, activity led, active high
+#define TEMP_INC_BTN 7        // GPIO7, increase target temperature, active low
+#define TEMP_DEC_BTN 8        // GPIO8, decrease target temperature, active low
+#define START_STOP_BTN 9      // GPIO9, start/stop heating, active low
+#define HEATER_MOSFET_GATE 38 // GPIO38
+#define MAX_ALLOWED_TEMP 55   // °C
+#define LEDC_MODE LEDC_LOW_SPEED_MODE
+#define LEDC_CHANNEL LEDC_CHANNEL_0
+#define LEDC_DUTY_RES LEDC_TIMER_8_BIT
+#define LEDC_FREQ 1000 // 1KHz
 
 uint8_t heater_current_I = 0;
 uint8_t heater_current_temp_F = 0;
 float heater_current_temp_C = 0;
-uint8_t heater_target_temp = 20; // degrees Celsius
+uint8_t heater_target_temp = 20; // °C
 bool is_heating_active = false;
+uint8_t mosfet_duty_cycle = 0;
 
 adc_oneshot_unit_handle_t adc2_handle = NULL;
 uint16_t adcTempVal = 0;
@@ -30,13 +38,23 @@ void update_oled()
 {
 }
 
+void update_duty_cycle()
+{
+    // duty cycle formula is ((2 ^ bit_res) - 1) * desired_duty_cycle = 4095
+
+    // Set new duty cycle
+    ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, LEDC_CHANNEL, ((2 ^ LEDC_DUTY_RES) - 1) * mosfet_duty_cycle));
+    // Update duty cycle
+    ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, LEDC_CHANNEL));
+}
+
 void read_heater_current()
 {
     // I = V / R
 
     adc_oneshot_read(&adc2_handle, ADC_CHANNEL_3, &adcIVal);
 
-    heater_current_I = 0;
+    heater_current_I = 0; // TODO
 }
 
 void read_heater_temp()
@@ -59,7 +77,32 @@ void read_heater_temp()
 
 void isr_change_heater_target_temp(uint8_t value)
 {
-    value ? heater_target_temp++ : heater_target_temp--;
+    if (value)
+    {
+        mosfet_duty_cycle++;
+        if (heater_target_temp < MAX_ALLOWED_TEMP)
+        {
+            heater_target_temp++;
+        }
+        return;
+    }
+
+    mosfet_duty_cycle--;
+
+    if (mosfet_duty_cycle > 100)
+    {
+        mosfet_duty_cycle = 100;
+    }
+
+    if (mosfet_duty_cycle < 0)
+    {
+        mosfet_duty_cycle = 0;
+    }
+
+    if (heater_target_temp > 0)
+    {
+        heater_target_temp--;
+    }
 }
 
 void isr_start_stop_heating()
@@ -163,12 +206,36 @@ esp_err_t init_uart()
     return ESP_OK;
 }
 
+esp_err_t init_pwm()
+{
+    // Configure LEDC PWM timer
+    ledc_timer_config_t ledc_timer = {
+        .speed_mode = LEDC_MODE,
+        .timer_num = LEDC_TIMER_0,
+        .freq_hz = LEDC_FREQ,
+        .duty_resolution = LEDC_DUTY_RES,
+        .clk_cfg = LEDC_AUTO_CLK};
+    ESP_ERROR_CHECK(ledc_timer_config(&ledc_timer));
+
+    // Configure LEDC PWM channel
+    ledc_channel_config_t ledc_channel = {
+        .speed_mode = LEDC_LOW_SPEED_MODE,
+        .channel = LEDC_CHANNEL,
+        .timer_sel = LEDC_TIMER_0,
+        .intr_type = LEDC_INTR_DISABLE,
+        .gpio_num = HEATER_MOSFET_GATE,
+        .duty = 0, // Set duty to 0%
+        .hpoint = 0};
+    ESP_ERROR_CHECK(ledc_channel_config(&ledc_channel));
+}
+
 void app_main(void)
 {
     init_uart();
     init_gpio();
     init_i2c();
     init_adc();
+    init_pwm();
 
     char test_str[32];
     static uint8_t led_state = 0;
