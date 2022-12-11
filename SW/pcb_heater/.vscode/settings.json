@@ -19,6 +19,11 @@
     "array": "c",
     "string": "c",
     "string_view": "c",
-    "inttypes.h": "c"
+    "inttypes.h": "c",
+    "i2c.h": "c",
+    "stdio.h": "c",
+    "ssd1306.h": "c",
+    "esp_err.h": "c",
+    "adc_types.h": "c"
   }
 }
