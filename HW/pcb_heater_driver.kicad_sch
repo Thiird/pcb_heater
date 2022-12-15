@@ -173,7 +173,7 @@
       (reference "C2") (unit 1) (value "200u") (footprint "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm")
     )
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/6847127a-ec49-43ab-8735-480708e84162"
-      (reference "C3") (unit 1) (value "10uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (reference "C3") (unit 1) (value "10u") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/23743d2c-88b3-449f-b4c2-508e5560f5c7"
       (reference "C4") (unit 1) (value "22n") (footprint "Capacitor_SMD:C_0603_1608Metric")
@@ -263,7 +263,7 @@
       (reference "R2") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/d8f51e65-ca8c-412e-9c09-61e73d04032d/ca0e95fc-fcf2-4116-9a47-91e2d5d4dffb"
-      (reference "R3") (unit 1) (value "37k") (footprint "Resistor_SMD:R_0603_1608Metric")
+      (reference "R3") (unit 1) (value "3k7") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/7d8672ff-8c9b-4cfe-8dbb-3ae8b2afedd8/7da99cbc-f19e-41f3-94a5-0e2fd41d03ff"
       (reference "R4") (unit 1) (value "22k") (footprint "Resistor_SMD:R_0603_1608Metric")
@@ -297,9 +297,6 @@
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/34f086f4-1076-49d4-b852-b2acd3fe5a63"
       (reference "R14") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
-    )
-    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/6d2ef856-11f0-4c54-aeb9-57d05b075501"
-      (reference "R15") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/e04ffae2-b7ed-4911-b24f-d951a6fd3202"
       (reference "R16") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
@@ -341,13 +338,10 @@
       (reference "SW5") (unit 1) (value "SW_SPST") (footprint "1-1825027-1:SW_1-1825027-1")
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/36dad684-14a6-4fa8-a60b-38b9d5c41886"
-      (reference "TH1") (unit 1) (value "Heater_1") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
+      (reference "TH1") (unit 1) (value "heater_temp") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/92251fe2-af60-40b0-8d5b-016c827aa918"
-      (reference "TH2") (unit 1) (value "Heater_2") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
-    )
-    (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/d6231291-1ddc-4f8a-b861-15aa16195f01"
-      (reference "TH3") (unit 1) (value "Heater_3") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
+      (reference "TH2") (unit 1) (value "room_temp") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
     )
     (path "/b389637b-c3c6-4117-a6e9-91a2ebc82014/0a720116-f99e-41d0-ba4c-69a9b7e14b24"
       (reference "TH4") (unit 1) (value "mosfet") (footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
