@@ -11,6 +11,7 @@
 #include "hal/adc_types.h"
 #include "esp_adc/adc_oneshot.h"
 #include "ssd1306.h"
+#include "math.h"
 
 #define ACTIVITY_LED GPIO_NUM_4        // GPIO4, activity led, active high
 #define TEMP_INC_BTN GPIO_NUM_7        // GPIO7, increase target temperature, active low
@@ -18,7 +19,7 @@
 #define START_STOP_BTN GPIO_NUM_9      // GPIO9, start/stop heating, active low
 #define HEATER_MOSFET_GATE GPIO_NUM_38 // GPIO38
 #define MAX_ALLOWED_TEMP 55            // °C
-#define ADC_RESOLUTION ADC_BITWIDTH_DEFAULT
+#define ADC_RESOLUTION ADC_BITWIDTH_13
 #define LEDC_MODE LEDC_LOW_SPEED_MODE
 #define LEDC_CHANNEL LEDC_CHANNEL_0
 #define LEDC_DUTY_RES LEDC_TIMER_8_BIT
@@ -26,11 +27,11 @@
 
 #define I2C_SDA 13           // GPIO13
 #define I2C_SCL 12           // GPIO12
-#define I2C_FREQUENCY 100000 // 100Kbit
+#define I2C_FREQUENCY 100000 // 100 Kb/s
 #define I2C_USED_PORT I2C_NUM_0
 
 #define ONE_SECOND 1000 / portTICK_PERIOD_MS
-#define DEBOUNCE_TIME 10 // ms
+#define DEBOUNCE_TIME_MS 200 / portTICK_PERIOD_MS // 0.2 s debounce time
 
 float heater_current_I = 0;
 float heater_voltage_low_side = 0;
@@ -38,11 +39,13 @@ int8_t heater_current_temp_F = 0;
 float heater_current_temp_C = 0;
 int8_t heater_target_temp_C = 20;
 bool is_heating_active = false;
-int8_t room_current_temp_F = 0;
-float room_current_temp_C = 0;
+int8_t room_temp_F = 0;
+float room_temp_C = 0;
 int8_t mosfet_duty_cycle = 0;
 
-uint32_t start_btn_millis = 0;
+uint32_t temp_inc_btn_ms = 0;
+uint32_t temp_dec_btn_ms = 0;
+uint32_t start_stop_btn_ms = 0;
 
 adc_oneshot_unit_handle_t adc2_handle = NULL;
 int adcTempVal = 0;
@@ -106,15 +109,6 @@ void read_heater_temp()
     heater_current_temp_C = (heater_current_temp_F - 32) / 1.8;
 }
 
-void read_room_temp()
-{
-    adc_oneshot_read(adc2_handle, ADC_CHANNEL_3, &adcTempVal);
-    room_current_temp_F = 10000 * ((4095 / adcTempVal) - 1);
-
-    // Fahrenheit --> Celsius
-    room_current_temp_C = (room_current_temp_F - 32) / 1.8;
-}
-
 void isr_change_heater_target_temp(uint8_t value)
 {
     if (value)
@@ -159,26 +153,30 @@ void vTaskUserButtonsListener(void *arg)
         {
             if (io_num == TEMP_INC_BTN)
             {
-                if ((xTaskGetTickCount() - start_btn_millis) / portTICK_PERIOD_MS > DEBOUNCE_TIME)
+                if ((xTaskGetTickCount() - temp_inc_btn_ms) > DEBOUNCE_TIME_MS)
                 {
-                    printf("Premuto + ahaha\n");
-                    printf("%lu\n", xTaskGetTickCount());
-                    start_btn_millis = xTaskGetTickCount();
+                    printf("Button event: Temperature Increase\n");
+                    temp_inc_btn_ms = xTaskGetTickCount();
                 }
             }
 
             if (io_num == TEMP_DEC_BTN)
             {
-                printf("Premuto - ahaha\n");
+                if ((xTaskGetTickCount() - temp_dec_btn_ms) > DEBOUNCE_TIME_MS)
+                {
+                    printf("Button event: Temperature Decrease\n");
+                    temp_dec_btn_ms = xTaskGetTickCount();
+                }
             }
 
             if (io_num == START_STOP_BTN)
             {
-                printf("Premuto start/stop ahaha\n");
+                if ((xTaskGetTickCount() - start_stop_btn_ms) > DEBOUNCE_TIME_MS)
+                {
+                    printf("Button event: Start/Stop\n");
+                    start_stop_btn_ms = xTaskGetTickCount();
+                }
             }
-
-            printf("GPIO[%" PRIu32 "] intr, val: %d\n", io_num, gpio_get_level(io_num));
-            printf("----------\n");
         }
     }
 }
@@ -203,6 +201,18 @@ void vReadRoomTemp()
 {
     while (true)
     {
+        adc_oneshot_read(adc2_handle, ADC_CHANNEL_0, &adcTempVal);
+        room_temp_F = 10000 * ((8191 / adcTempVal) - 1);
+
+        // Fahrenheit --> Celsius
+        room_temp_C = (room_temp_F - 32) / 1.8;
+
+        int Vout = adcTempVal * 3.3 / 8191;
+        int Rt = 10000 * Vout / (3.3 - Vout);
+
+        int T = 1 / (1 / 298.15 + log(Rt / 10000) / 3950.0); // Temperature in Kelvin
+        int Tc = T - 273.15;                                 // Celsius
+        printf("room temp is %d\n", Tc);
         vTaskDelay(ONE_SECOND);
     }
 }
@@ -216,7 +226,7 @@ void vUpdateOled()
     while (true)
     {
         ssd1306_fill_rectangle(ssd1306, 0, 0, 100, 20, fill);
-        fill != fill;
+        fill = !fill;
         vTaskDelay(ONE_SECOND);
     }
 }
@@ -333,10 +343,10 @@ esp_err_t init_i2c()
         .scl_io_num = I2C_SCL,
         .scl_pullup_en = GPIO_PULLUP_DISABLE, // already on board
         .master.clk_speed = I2C_FREQUENCY,
-        .clk_flags = 0};
+    };
     ESP_ERROR_CHECK(i2c_param_config(I2C_USED_PORT, &conf));
 
-    ESP_ERROR_CHECK(i2c_driver_install(I2C_USED_PORT, I2C_MODE_MASTER, NULL, NULL, ESP_INTR_FLAG_LEVEL6));
+    ESP_ERROR_CHECK(i2c_driver_install(I2C_USED_PORT, I2C_MODE_MASTER, 0, 0, 0));
 
     return ESP_OK;
 }
@@ -382,6 +392,7 @@ void vTaskActivityLed()
 void app_main(void)
 {
     // init_uart();
+
     init_gpio();
     init_adc();
     init_pwm();
