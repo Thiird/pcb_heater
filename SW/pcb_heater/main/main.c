@@ -12,13 +12,13 @@
 #include "esp_adc/adc_oneshot.h"
 #include "ssd1306.h"
 
-#define ACTIVITY_LED 4        // GPIO4, activity led, active high
-#define TEMP_INC_BTN 7        // GPIO7, increase target temperature, active low
-#define TEMP_DEC_BTN 8        // GPIO8, decrease target temperature, active low
-#define START_STOP_BTN 9      // GPIO9, start/stop heating, active low
-#define HEATER_MOSFET_GATE 38 // GPIO38
-#define MAX_ALLOWED_TEMP 55   // °C
-#define ADC_RESOLUTION ADC_BITWIDTH_12
+#define ACTIVITY_LED GPIO_NUM_4        // GPIO4, activity led, active high
+#define TEMP_INC_BTN GPIO_NUM_7        // GPIO7, increase target temperature, active low
+#define TEMP_DEC_BTN GPIO_NUM_8        // GPIO8, decrease target temperature, active low
+#define START_STOP_BTN GPIO_NUM_9      // GPIO9, start/stop heating, active low
+#define HEATER_MOSFET_GATE GPIO_NUM_38 // GPIO38
+#define MAX_ALLOWED_TEMP 55            // °C
+#define ADC_RESOLUTION ADC_BITWIDTH_DEFAULT
 #define LEDC_MODE LEDC_LOW_SPEED_MODE
 #define LEDC_CHANNEL LEDC_CHANNEL_0
 #define LEDC_DUTY_RES LEDC_TIMER_8_BIT
@@ -28,6 +28,9 @@
 #define I2C_SCL 12           // GPIO12
 #define I2C_FREQUENCY 100000 // 100Kbit
 #define I2C_USED_PORT I2C_NUM_0
+
+#define ONE_SECOND 1000 / portTICK_PERIOD_MS
+#define DEBOUNCE_TIME 10 // ms
 
 float heater_current_I = 0;
 float heater_voltage_low_side = 0;
@@ -39,23 +42,19 @@ int8_t room_current_temp_F = 0;
 float room_current_temp_C = 0;
 int8_t mosfet_duty_cycle = 0;
 
+uint32_t start_btn_millis = 0;
+
 adc_oneshot_unit_handle_t adc2_handle = NULL;
 int adcTempVal = 0;
 int adcIVal = 0;
 
 static QueueHandle_t gpio_evt_queue = NULL;
-static ssd1306_handle_t ssd1306_dev = NULL;
+static ssd1306_handle_t ssd1306 = NULL;
 
 static void IRAM_ATTR gpio_isr_handler(void *arg)
 {
     uint32_t gpio_num = (uint32_t)arg;
     xQueueSendFromISR(gpio_evt_queue, &gpio_num, NULL);
-}
-
-void update_oled()
-{
-    /*ssd1306_write_temp();
-    ssd1306_write_symbol();*/
 }
 
 void update_duty_cycle()
@@ -151,42 +150,74 @@ void isr_start_stop_heating()
     is_heating_active = !is_heating_active;
 }
 
-esp_err_t init_adc()
+void vTaskUserButtonsListener(void *arg)
 {
-    // Configure ADC2 instance
-    adc_oneshot_unit_init_cfg_t adc2_config = {
-        .unit_id = ADC_UNIT_2,
-        .ulp_mode = ADC_ULP_MODE_DISABLE,
-    };
-    ESP_ERROR_CHECK(adc_oneshot_new_unit(&adc2_config, &adc2_handle));
-
-    // Create config for ADC channel
-    adc_oneshot_chan_cfg_t config = {
-        .bitwidth = ADC_RESOLUTION, // can't use 13 bits, bit 1 always 0, see errata
-        .atten = ADC_ATTEN_DB_11,
-    };
-
-    // Apply config to Channe0-ADC2, mosfet temp
-    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_0, &config));
-
-    // Apply config to Channe3-ADC2, room temp
-    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_3, &config));
-
-    // Apply config to Channe4-ADC2, heater temp (middle unit)
-    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_4, &config));
-
-    return ESP_OK;
-}
-
-static void gpio_task_example(void *arg)
-{
-    uint32_t io_num;
-    for (;;)
+    uint32_t io_num = -1;
+    while (true)
     {
         if (xQueueReceive(gpio_evt_queue, &io_num, portMAX_DELAY))
         {
+            if (io_num == TEMP_INC_BTN)
+            {
+                if ((xTaskGetTickCount() - start_btn_millis) / portTICK_PERIOD_MS > DEBOUNCE_TIME)
+                {
+                    printf("Premuto + ahaha\n");
+                    printf("%lu\n", xTaskGetTickCount());
+                    start_btn_millis = xTaskGetTickCount();
+                }
+            }
+
+            if (io_num == TEMP_DEC_BTN)
+            {
+                printf("Premuto - ahaha\n");
+            }
+
+            if (io_num == START_STOP_BTN)
+            {
+                printf("Premuto start/stop ahaha\n");
+            }
+
             printf("GPIO[%" PRIu32 "] intr, val: %d\n", io_num, gpio_get_level(io_num));
+            printf("----------\n");
         }
+    }
+}
+
+void vReadHeaterCurrent()
+{
+    while (true)
+    {
+        vTaskDelay(ONE_SECOND);
+    }
+}
+
+void vReadHeaterTemp()
+{
+    while (true)
+    {
+        vTaskDelay(ONE_SECOND);
+    }
+}
+
+void vReadRoomTemp()
+{
+    while (true)
+    {
+        vTaskDelay(ONE_SECOND);
+    }
+}
+
+void vUpdateOled()
+{
+    ssd1306 = ssd1306_create(I2C_USED_PORT, SSD1306_I2C_ADDRESS);
+    ssd1306_clear_screen(ssd1306, 0);
+    uint8_t fill = 0;
+
+    while (true)
+    {
+        ssd1306_fill_rectangle(ssd1306, 0, 0, 100, 20, fill);
+        fill != fill;
+        vTaskDelay(ONE_SECOND);
     }
 }
 
@@ -194,47 +225,50 @@ esp_err_t init_gpio()
 {
     // Activity LED
     gpio_config_t io_conf = {
-        io_conf.intr_type = GPIO_INTR_DISABLE, // disable interrup,
-        io_conf.mode = GPIO_MODE_OUTPUT,       // set as output mode
-        io_conf.pin_bit_mask = ACTIVITY_LED,   // bit mask of the pins that you want to set
-        io_conf.pull_down_en = 0,              // disable pull-down mode
-        io_conf.pull_up_en = 0};               // disable pull-up mode
+        io_conf.intr_type = GPIO_INTR_DISABLE,       // disable interrupt
+        io_conf.mode = GPIO_MODE_OUTPUT,             // set as output mode
+        io_conf.pin_bit_mask = 1ULL << ACTIVITY_LED, // bit mask of the pins that you want to set
+        io_conf.pull_down_en = 0,                    // disable pull-down mode
+        io_conf.pull_up_en = 0};                     // disable pull-up mode
     ESP_ERROR_CHECK(gpio_config(&io_conf));
 
     // Increase temp button
     io_conf.intr_type = GPIO_INTR_NEGEDGE;
     io_conf.mode = GPIO_MODE_INPUT;
-    io_conf.pin_bit_mask = TEMP_INC_BTN;
+    io_conf.pin_bit_mask = 1ULL << TEMP_INC_BTN;
     io_conf.pull_down_en = 0;
     io_conf.pull_up_en = 1;
     ESP_ERROR_CHECK(gpio_config(&io_conf));
-    ESP_ERROR_CHECK(gpio_isr_handler_add(TEMP_INC_BTN, gpio_isr_handler, (void *)1));
 
     // Decrease temp button
     io_conf.intr_type = GPIO_INTR_NEGEDGE;
     io_conf.mode = GPIO_MODE_INPUT;
-    io_conf.pin_bit_mask = TEMP_DEC_BTN;
+    io_conf.pin_bit_mask = 1ULL << TEMP_DEC_BTN;
     io_conf.pull_down_en = 0;
     io_conf.pull_up_en = 1;
     ESP_ERROR_CHECK(gpio_config(&io_conf));
-    ESP_ERROR_CHECK(gpio_isr_handler_add(TEMP_INC_BTN, gpio_isr_handler, (void *)0));
 
     // Start/Stop temp button
     io_conf.intr_type = GPIO_INTR_NEGEDGE;
     io_conf.mode = GPIO_MODE_INPUT;
-    io_conf.pin_bit_mask = START_STOP_BTN;
+    io_conf.pin_bit_mask = 1ULL << START_STOP_BTN;
     io_conf.pull_down_en = 0;
     io_conf.pull_up_en = 1;
     ESP_ERROR_CHECK(gpio_config(&io_conf));
-    ESP_ERROR_CHECK(gpio_isr_handler_add(TEMP_INC_BTN, gpio_isr_handler, NULL));
 
     // create a queue to handle gpio event from isr
     gpio_evt_queue = xQueueCreate(10, sizeof(uint32_t));
+
     // start gpio task
-    xTaskCreate(gpio_task_example, "gpio_task_example", 2048, NULL, 10, NULL);
+    xTaskCreate(vTaskUserButtonsListener, "gpio_task_example", 2048, NULL, 10, NULL);
 
     // Enable per-GPIO interrupts
     ESP_ERROR_CHECK(gpio_install_isr_service(ESP_INTR_FLAG_LEVEL1));
+
+    // Hook ISR handler for each button
+    ESP_ERROR_CHECK(gpio_isr_handler_add(TEMP_INC_BTN, gpio_isr_handler, (void *)TEMP_INC_BTN));
+    ESP_ERROR_CHECK(gpio_isr_handler_add(TEMP_DEC_BTN, gpio_isr_handler, (void *)TEMP_DEC_BTN));
+    ESP_ERROR_CHECK(gpio_isr_handler_add(START_STOP_BTN, gpio_isr_handler, (void *)START_STOP_BTN));
 
     return ESP_OK;
 }
@@ -289,62 +323,74 @@ esp_err_t init_pwm()
     return ESP_OK;
 }
 
-void test_oled()
+esp_err_t init_i2c()
 {
-    i2c_config_t conf;
-    conf.mode = I2C_MODE_MASTER;
-    conf.sda_io_num = (gpio_num_t)I2C_SDA;
-    conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
-    conf.scl_io_num = (gpio_num_t)I2C_SCL;
-    conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
-    conf.master.clk_speed = I2C_FREQUENCY;
-    conf.clk_flags = I2C_SCLK_SRC_FLAG_FOR_NOMAL;
+    // OLED i2c port
+    i2c_config_t conf = {
+        .mode = I2C_MODE_MASTER,
+        .sda_io_num = I2C_SDA,
+        .sda_pullup_en = GPIO_PULLUP_DISABLE, // already on board
+        .scl_io_num = I2C_SCL,
+        .scl_pullup_en = GPIO_PULLUP_DISABLE, // already on board
+        .master.clk_speed = I2C_FREQUENCY,
+        .clk_flags = 0};
+    ESP_ERROR_CHECK(i2c_param_config(I2C_USED_PORT, &conf));
 
-    i2c_param_config(I2C_USED_PORT, &conf);
-    i2c_driver_install(I2C_USED_PORT, conf.mode, 0, 0, 0);
+    ESP_ERROR_CHECK(i2c_driver_install(I2C_USED_PORT, I2C_MODE_MASTER, NULL, NULL, ESP_INTR_FLAG_LEVEL6));
 
-    ssd1306_dev = ssd1306_create(I2C_USED_PORT, SSD1306_I2C_ADDRESS);
-    ssd1306_refresh_gram(ssd1306_dev);
-    ssd1306_clear_screen(ssd1306_dev, 0x00);
+    return ESP_OK;
+}
 
-    char data_str[10] = {0};
-    sprintf(data_str, "C STR");
-    ssd1306_draw_string(ssd1306_dev, 70, 16, (const uint8_t *)data_str, 16, 1);
-    ssd1306_refresh_gram(ssd1306_dev);
+esp_err_t init_adc()
+{
+    // Configure ADC2 instance
+    adc_oneshot_unit_init_cfg_t adc2_config = {
+        .unit_id = ADC_UNIT_2,
+        .ulp_mode = ADC_ULP_MODE_DISABLE,
+    };
+    ESP_ERROR_CHECK(adc_oneshot_new_unit(&adc2_config, &adc2_handle));
+
+    // Create config for ADC channel
+    adc_oneshot_chan_cfg_t config = {
+        .bitwidth = ADC_RESOLUTION, // can't use 13 bits, bit 1 always 0, see errata
+        .atten = ADC_ATTEN_DB_11,
+    };
+
+    // Apply config to Channe0-ADC2, mosfet temp
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_0, &config));
+
+    // Apply config to Channe3-ADC2, room temp
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_3, &config));
+
+    // Apply config to Channe4-ADC2, heater temp (middle unit)
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_4, &config));
+
+    return ESP_OK;
+}
+
+void vTaskActivityLed()
+{
+    while (true)
+    {
+        gpio_set_level(ACTIVITY_LED, 1);
+        vTaskDelay(ONE_SECOND);
+        gpio_set_level(ACTIVITY_LED, 0);
+        vTaskDelay(ONE_SECOND);
+    }
 }
 
 void app_main(void)
 {
-    init_uart();
+    // init_uart();
     init_gpio();
     init_adc();
     init_pwm();
+    init_i2c();
 
-    char test_str[64];
-    static uint8_t led_state = 0;
-    int cont = 0;
-
-    while (true)
-    {
-        read_room_temp();
-
-        // Write data to UART.
-        snprintf(test_str, 64, "Test %d, temp is %f °C, current is %f\n",
-                 cont,
-                 room_current_temp_C,
-                 heater_current_I);
-
-        uart_write_bytes(UART_NUM_0, (const char *)test_str, 32);
-
-        gpio_set_level(ACTIVITY_LED, led_state);
-        led_state = !led_state;
-
-        cont++;
-        // 1 sec delay
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
-
-    // xTaskCreate(update_oled, "update_oled", 2048, NULL, 5, NULL);
-    // xTaskCreate(read_current, "read_current", 2048, NULL, 10, NULL);
-    // xTaskCreate(read_heater_temp, "read_heater_temp", 2048, NULL, 10, NULL);
+    xTaskCreate(vTaskActivityLed, "blink activity led", 2048, NULL, 5, NULL);
+    xTaskCreate(vTaskUserButtonsListener, "user buttons listener", 2048, NULL, 5, NULL);
+    xTaskCreate(vUpdateOled, "update oled", 2048, NULL, 5, NULL);
+    xTaskCreate(vReadHeaterCurrent, "read heater current", 2048, NULL, 10, NULL);
+    xTaskCreate(vReadHeaterTemp, "read heater temp", 2048, NULL, 10, NULL);
+    xTaskCreate(vReadRoomTemp, "read room temp", 2048, NULL, 10, NULL);
 }
