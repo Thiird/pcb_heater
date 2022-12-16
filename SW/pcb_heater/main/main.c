@@ -22,8 +22,9 @@
 #define ADC_RESOLUTION ADC_BITWIDTH_13
 #define LEDC_MODE LEDC_LOW_SPEED_MODE
 #define LEDC_CHANNEL LEDC_CHANNEL_0
-#define LEDC_DUTY_RES LEDC_TIMER_8_BIT
-#define LEDC_FREQ 1000 // 1KHz
+#define LEDC_DUTY_RES LEDC_TIMER_13_BIT
+#define LEDC_DUTY_RES_ACTUAL 8192 // 2 ^ 13
+#define LEDC_FREQ 1000            // 1KHz
 
 #define I2C_SDA 13           // GPIO13
 #define I2C_SCL 12           // GPIO12
@@ -32,6 +33,8 @@
 
 #define ONE_SECOND 1000 / portTICK_PERIOD_MS
 #define DEBOUNCE_TIME_MS 200 / portTICK_PERIOD_MS // 0.2 s debounce time
+
+#define HEATER_RESISTANCE 3.4 // @ 20°C
 
 float heater_current_I = 0;
 float heater_voltage_low_side = 0;
@@ -51,6 +54,8 @@ adc_oneshot_unit_handle_t adc2_handle = NULL;
 int adcTempVal = 0;
 int adcIVal = 0;
 
+adc_oneshot_unit_handle_t adc1_handle = NULL;
+
 static QueueHandle_t gpio_evt_queue = NULL;
 static ssd1306_handle_t ssd1306 = NULL;
 
@@ -62,12 +67,15 @@ static void IRAM_ATTR gpio_isr_handler(void *arg)
 
 void update_duty_cycle()
 {
-    // duty cycle formula is ((2 ^ bit_res) - 1) * desired_duty_cycle = 4095
+    // duty cycle formula is ((2 ^ bit_res) - 1) * desired_duty_cycle
 
     // Set new duty cycle
-    ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, LEDC_CHANNEL, ((2 ^ LEDC_DUTY_RES) - 1) * mosfet_duty_cycle));
+    ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, LEDC_CHANNEL, (uint32_t)((LEDC_DUTY_RES_ACTUAL - 1) * (mosfet_duty_cycle / 100.0))));
     // Update duty cycle
     ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, LEDC_CHANNEL));
+
+    printf("Duty cycle: %d = %ld\n", mosfet_duty_cycle, (uint32_t)((LEDC_DUTY_RES_ACTUAL - 1) * (mosfet_duty_cycle / 100.0)));
+    printf("value in percent is %f\n", (mosfet_duty_cycle / 100.0));
 }
 
 void read_heater_current()
@@ -156,6 +164,8 @@ void vTaskUserButtonsListener(void *arg)
                 if ((xTaskGetTickCount() - temp_inc_btn_ms) > DEBOUNCE_TIME_MS)
                 {
                     printf("Button event: Temperature Increase\n");
+                    mosfet_duty_cycle = (mosfet_duty_cycle != 100) ? mosfet_duty_cycle + 5 : 100;
+                    update_duty_cycle();
                     temp_inc_btn_ms = xTaskGetTickCount();
                 }
             }
@@ -165,6 +175,8 @@ void vTaskUserButtonsListener(void *arg)
                 if ((xTaskGetTickCount() - temp_dec_btn_ms) > DEBOUNCE_TIME_MS)
                 {
                     printf("Button event: Temperature Decrease\n");
+                    mosfet_duty_cycle = mosfet_duty_cycle == 0 ? 0 : mosfet_duty_cycle - 5;
+                    update_duty_cycle();
                     temp_dec_btn_ms = xTaskGetTickCount();
                 }
             }
@@ -173,6 +185,9 @@ void vTaskUserButtonsListener(void *arg)
             {
                 if ((xTaskGetTickCount() - start_stop_btn_ms) > DEBOUNCE_TIME_MS)
                 {
+                    mosfet_duty_cycle = 0;
+                    update_duty_cycle();
+                    printf("Duty cycle is now %d\n", mosfet_duty_cycle);
                     printf("Button event: Start/Stop\n");
                     start_stop_btn_ms = xTaskGetTickCount();
                 }
@@ -185,6 +200,12 @@ void vReadHeaterCurrent()
 {
     while (true)
     {
+        adc_oneshot_read(adc1_handle, ADC_CHANNEL_9, &adcIVal);
+
+        float voltage = (adcIVal / 8192.0) * 12;
+        float current = voltage / HEATER_RESISTANCE;
+        printf("Heater voltage %.2f V, current %.2f A\n", voltage, current);
+
         vTaskDelay(ONE_SECOND);
     }
 }
@@ -361,19 +382,35 @@ esp_err_t init_adc()
     ESP_ERROR_CHECK(adc_oneshot_new_unit(&adc2_config, &adc2_handle));
 
     // Create config for ADC channel
-    adc_oneshot_chan_cfg_t config = {
+    adc_oneshot_chan_cfg_t config2 = {
         .bitwidth = ADC_RESOLUTION, // can't use 13 bits, bit 1 always 0, see errata
         .atten = ADC_ATTEN_DB_11,
     };
 
     // Apply config to Channe0-ADC2, mosfet temp
-    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_0, &config));
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_0, &config2));
 
     // Apply config to Channe3-ADC2, room temp
-    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_3, &config));
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_3, &config2));
 
     // Apply config to Channe4-ADC2, heater temp (middle unit)
-    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_4, &config));
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_4, &config2));
+
+    // Configure ADC1 instance
+    adc_oneshot_unit_init_cfg_t adc1_config = {
+        .unit_id = ADC_UNIT_1,
+        .ulp_mode = ADC_ULP_MODE_DISABLE,
+    };
+    ESP_ERROR_CHECK(adc_oneshot_new_unit(&adc1_config, &adc1_handle));
+
+    // Create config for ADC channel
+    adc_oneshot_chan_cfg_t config1 = {
+        .bitwidth = ADC_RESOLUTION, // can't use 13 bits, bit 1 always 0, see errata
+        .atten = ADC_ATTEN_DB_11,
+    };
+
+    // Apply config to Channe9-ADC1, heater current
+    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc1_handle, ADC_CHANNEL_9, &config1));
 
     return ESP_OK;
 }
@@ -403,5 +440,5 @@ void app_main(void)
     xTaskCreate(vUpdateOled, "update oled", 2048, NULL, 5, NULL);
     xTaskCreate(vReadHeaterCurrent, "read heater current", 2048, NULL, 10, NULL);
     xTaskCreate(vReadHeaterTemp, "read heater temp", 2048, NULL, 10, NULL);
-    xTaskCreate(vReadRoomTemp, "read room temp", 2048, NULL, 10, NULL);
+    // xTaskCreate(vReadRoomTemp, "read room temp", 2048, NULL, 10, NULL);
 }

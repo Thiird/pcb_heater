@@ -24,7 +24,8 @@
     "stdio.h": "c",
     "ssd1306.h": "c",
     "esp_err.h": "c",
-    "adc_types.h": "c"
+    "adc_types.h": "c",
+    "math.h": "c"
   },
   "idf.flashType": "UART"
 }
