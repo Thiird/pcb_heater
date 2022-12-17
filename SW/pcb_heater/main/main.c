@@ -20,6 +20,7 @@
 #define HEATER_MOSFET_GATE GPIO_NUM_38 // GPIO38
 #define MAX_ALLOWED_TEMP 55            // °C
 #define ADC_RESOLUTION ADC_BITWIDTH_13
+#define ADC_MAX_VALUE 8191.0
 #define LEDC_MODE LEDC_LOW_SPEED_MODE
 #define LEDC_CHANNEL LEDC_CHANNEL_0
 #define LEDC_DUTY_RES LEDC_TIMER_13_BIT
@@ -34,15 +35,20 @@
 #define ONE_SECOND 1000 / portTICK_PERIOD_MS
 #define DEBOUNCE_TIME_MS 200 / portTICK_PERIOD_MS // 0.2 s debounce time
 
-#define HEATER_RESISTANCE 3.4 // @ 20°C
+#define HEATER_RESISTANCE 3.4        // @ 20°C
+#define NTC_BETA 3936.0              // 20°/25° C
+#define NTC_ROOM_RESISTANCE 8500.0   // 10k Ohm @ 25°C, 8.5k Ohm @ 20°C
+#define NTC_BALANCE_RESISTOR 10000.0 // 10k Ohm
+#define ROOM_TEMP 293.15             // 20° C
+#define NTC_SAMPLE_NUMBER 5
 
 float heater_current_I = 0;
 float heater_voltage_low_side = 0;
-int8_t heater_current_temp_F = 0;
-float heater_current_temp_C = 0;
+float heater_temp_F = 0;
+float heater_temp_C = 0;
 int8_t heater_target_temp_C = 20;
 bool is_heating_active = false;
-int8_t room_temp_F = 0;
+float room_temp_F = 0;
 float room_temp_C = 0;
 int8_t mosfet_duty_cycle = 0;
 
@@ -111,10 +117,10 @@ void read_heater_temp()
      With this we can simplify to Rt = R0 * ((adcMax / adcTempVal) - 1)
      ADC on ESP32-S2 is 12-bit, so adcMax is 4095
      */
-    heater_current_temp_F = 10000 * ((4095 / adcTempVal) - 1);
+    heater_temp_F = 10000 * ((4095 / adcTempVal) - 1);
 
     // Fahrenheit --> Celsius
-    heater_current_temp_C = (heater_current_temp_F - 32) / 1.8;
+    heater_temp_C = (heater_temp_F - 32) / 1.8;
 }
 
 void isr_change_heater_target_temp(uint8_t value)
@@ -210,44 +216,75 @@ void vReadHeaterCurrent()
     }
 }
 
-void vReadHeaterTemp()
+void sample_ntc_temperature(adc_oneshot_unit_handle_t adc_handle, int adc_channel, float *temperature_F, float *temperature_C)
+{ // https://www.digikey.com/en/maker/projects/how-to-measure-temperature-with-an-ntc-thermistor/4a4b326095f144029df7f2eca589ca54
+
+    // Take sample
+    int adcSamples[NTC_SAMPLE_NUMBER];
+    for (int i = 0; i < NTC_SAMPLE_NUMBER; i++)
+        adc_oneshot_read(adc_handle, adc_channel, &adcSamples[i]);
+
+    // Average samples
+    float adcAverage = 0.0;
+    for (int i = 0; i < NTC_SAMPLE_NUMBER; i++)
+        adcAverage += adcSamples[i];
+
+    adcAverage /= NTC_SAMPLE_NUMBER;
+
+    if (adcAverage < 100) // NTC disconnected or something else
+    {
+        (*temperature_F) = 0.0;
+        (*temperature_C) = 0.0;
+        return;
+    }
+
+    float ntc_resistance = NTC_BALANCE_RESISTOR * ((ADC_MAX_VALUE / adcAverage) - 1);
+
+    (*temperature_F) = (NTC_BETA * ROOM_TEMP) /
+                       (NTC_BETA + (ROOM_TEMP * log(ntc_resistance / NTC_ROOM_RESISTANCE)));
+
+    (*temperature_C) = (*temperature_F) - 273.15;
+}
+
+void vReadHeaterTemperature()
 {
     while (true)
     {
+        sample_ntc_temperature(adc2_handle, ADC_CHANNEL_4, &heater_temp_F, &heater_temp_C);
         vTaskDelay(ONE_SECOND);
+
+        printf("heater temp is %f \n", heater_temp_C);
     }
 }
 
-void vReadRoomTemp()
+void vReadRoomTemperature()
 {
     while (true)
     {
-        adc_oneshot_read(adc2_handle, ADC_CHANNEL_0, &adcTempVal);
-        room_temp_F = 10000 * ((8191 / adcTempVal) - 1);
-
-        // Fahrenheit --> Celsius
-        room_temp_C = (room_temp_F - 32) / 1.8;
-
-        int Vout = adcTempVal * 3.3 / 8191;
-        int Rt = 10000 * Vout / (3.3 - Vout);
-
-        int T = 1 / (1 / 298.15 + log(Rt / 10000) / 3950.0); // Temperature in Kelvin
-        int Tc = T - 273.15;                                 // Celsius
-        printf("room temp is %d\n", Tc);
-        vTaskDelay(ONE_SECOND);
+        sample_ntc_temperature(adc2_handle, ADC_CHANNEL_0, &room_temp_F, &room_temp_C);
+        vTaskDelay(ONE_SECOND * 10);
+        printf("room temp is %f \n", room_temp_C);
     }
 }
 
 void vUpdateOled()
 {
     ssd1306 = ssd1306_create(I2C_USED_PORT, SSD1306_I2C_ADDRESS);
-    ssd1306_clear_screen(ssd1306, 0);
-    uint8_t fill = 0;
+
+    ssd1306_refresh_gram(ssd1306);
+    ssd1306_clear_screen(ssd1306, 0x00);
+
+    // char data_str[10] = {0};
+    uint32_t cont = 0;
+    /*sprintf(data_str, "C STR");
+    ssd1306_draw_string(ssd1306, 70, 16, (const uint8_t *)data_str, 16, 1);
+    ssd1306_refresh_gram(ssd1306);*/
 
     while (true)
     {
-        ssd1306_fill_rectangle(ssd1306, 0, 0, 100, 20, fill);
-        fill = !fill;
+        ssd1306_fill_rectangle(ssd1306, 0, 0, 60, 30, cont);
+        ssd1306_refresh_gram(ssd1306);
+        cont = !cont;
         vTaskDelay(ONE_SECOND);
     }
 }
@@ -383,17 +420,14 @@ esp_err_t init_adc()
 
     // Create config for ADC channel
     adc_oneshot_chan_cfg_t config2 = {
-        .bitwidth = ADC_RESOLUTION, // can't use 13 bits, bit 1 always 0, see errata
+        .bitwidth = ADC_RESOLUTION,
         .atten = ADC_ATTEN_DB_11,
     };
-
-    // Apply config to Channe0-ADC2, mosfet temp
-    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_0, &config2));
 
     // Apply config to Channe3-ADC2, room temp
     ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_3, &config2));
 
-    // Apply config to Channe4-ADC2, heater temp (middle unit)
+    // Apply config to Channe4-ADC2, heater temp
     ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_4, &config2));
 
     // Configure ADC1 instance
@@ -438,7 +472,7 @@ void app_main(void)
     xTaskCreate(vTaskActivityLed, "blink activity led", 2048, NULL, 5, NULL);
     xTaskCreate(vTaskUserButtonsListener, "user buttons listener", 2048, NULL, 5, NULL);
     xTaskCreate(vUpdateOled, "update oled", 2048, NULL, 5, NULL);
-    xTaskCreate(vReadHeaterCurrent, "read heater current", 2048, NULL, 10, NULL);
-    xTaskCreate(vReadHeaterTemp, "read heater temp", 2048, NULL, 10, NULL);
-    // xTaskCreate(vReadRoomTemp, "read room temp", 2048, NULL, 10, NULL);
+    // xTaskCreate(vReadHeaterCurrent, "read heater current", 2048, NULL, 10, NULL);
+    // xTaskCreate(vReadHeaterTemperature, "read heater temp", 2048, NULL, 10, NULL);
+    xTaskCreate(vReadRoomTemperature, "read room temp", 2048, NULL, 10, NULL);
 }
